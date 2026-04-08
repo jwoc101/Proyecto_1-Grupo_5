@@ -1,0 +1,155 @@
+Info: Series:GW1N-9C Device:GW1NR-9C Package:QFN88P Speed:C6/I5
+
+Info: Packing constants..
+Info: Packing Shadow RAM..
+Info: Packing GSR..
+Info: Packing IOs..
+Info: Packing diff IOs..
+Info: Packing IO logic..
+Info: Packing wide LUTs..
+Info: Packing LUT5s..
+Info: Packing LUT6s..
+Info: Packing LUT7s..
+Info: Packing LUT8s..
+Info: Packing ALUs..
+Info: Packing LUT-FFs..
+Info: Packing non-LUT FFs..
+Info: Packing PLLs..
+Info: Checksum: 0x5c4c7b89
+
+Info: Annotating ports with timing budgets for target frequency 27.00 MHz
+Info: Checksum: 0x5c4c7b89
+
+Info: Device utilisation:
+Info: 	                 VCC:     1/    1   100%
+Info: 	               SLICE:    11/ 8640     0%
+Info: 	                 IOB:    21/  274     7%
+Info: 	                ODDR:     0/  274     0%
+Info: 	           MUX2_LUT5:     0/ 4320     0%
+Info: 	           MUX2_LUT6:     0/ 2160     0%
+Info: 	           MUX2_LUT7:     0/ 1080     0%
+Info: 	           MUX2_LUT8:     0/ 1056     0%
+Info: 	                 GND:     1/    1   100%
+Info: 	                RAMW:     0/  270     0%
+Info: 	                 GSR:     1/    1   100%
+Info: 	                 OSC:     0/    1     0%
+Info: 	                rPLL:     0/    2     0%
+
+Info: Placed 11 cells based on constraints.
+Info: Creating initial analytic placement for 11 cells, random placement wirelen = 633.
+Info:     at initial placer iter 0, wirelen = 418
+Info:     at initial placer iter 1, wirelen = 420
+Info:     at initial placer iter 2, wirelen = 419
+Info:     at initial placer iter 3, wirelen = 420
+Info: Running main analytical placer, max placement attempts per cell = 10000.
+Info:     at iteration #1, type SLICE: wirelen solved = 419, spread = 423, legal = 424; time = 0.00s
+Info:     at iteration #1, type VCC: wirelen solved = 424, spread = 424, legal = 424; time = 0.00s
+Info:     at iteration #1, type GND: wirelen solved = 424, spread = 424, legal = 424; time = 0.00s
+Info:     at iteration #1, type GSR: wirelen solved = 424, spread = 424, legal = 424; time = 0.00s
+Info:     at iteration #1, type ALL: wirelen solved = 420, spread = 420, legal = 420; time = 0.00s
+Info: HeAP Placer Time: 0.01s
+Info:   of which solving equations: 0.00s
+Info:   of which spreading cells: 0.00s
+Info:   of which strict legalisation: 0.00s
+
+Info: Running simulated annealing placer for refinement.
+Info:   at iteration #1: temp = 0.000000, timing cost = 0, wirelen = 420
+Info:   at iteration #5: temp = 0.000000, timing cost = 0, wirelen = 328
+Info:   at iteration #10: temp = 0.000000, timing cost = 0, wirelen = 319
+Info:   at iteration #15: temp = 0.000000, timing cost = 0, wirelen = 308
+Info:   at iteration #15: temp = 0.000000, timing cost = 0, wirelen = 308 
+Info: SA placement time 0.01s
+
+Info: Max delay <async> -> <async>: 30.32 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [  9686,  11034) |**** 
+Info: [ 11034,  12382) | 
+Info: [ 12382,  13730) |** 
+Info: [ 13730,  15078) |* 
+Info: [ 15078,  16426) | 
+Info: [ 16426,  17774) | 
+Info: [ 17774,  19122) |****** 
+Info: [ 19122,  20470) |******* 
+Info: [ 20470,  21818) |** 
+Info: [ 21818,  23166) |*** 
+Info: [ 23166,  24514) |**** 
+Info: [ 24514,  25862) |**** 
+Info: [ 25862,  27210) |* 
+Info: [ 27210,  28558) | 
+Info: [ 28558,  29906) | 
+Info: [ 29906,  31254) |* 
+Info: [ 31254,  32602) |****** 
+Info: [ 32602,  33950) |* 
+Info: [ 33950,  35298) | 
+Info: [ 35298,  36646) |*** 
+Info: Checksum: 0xeee7e5ed
+Info: Find global nets...
+Info: Routing globals...
+
+Info: Routing..
+Info: Setting up routing queue.
+Info: Routing 56 arcs.
+Info:            |   (re-)routed arcs  |   delta    | remaining|       time spent     |
+Info:    IterCnt |  w/ripup   wo/ripup |  w/r  wo/r |      arcs| batch(sec) total(sec)|
+Info:         56 |        0         56 |    0    56 |         0|       0.29       0.29|
+Info: Routing complete.
+Info: Router1 time 0.29s
+Info: Checksum: 0xeb956a1e
+
+Info: Critical path report for cross-domain path '<async>' -> '<async>':
+Info: curr total
+Info:  0.0  0.0  Source cor.in_IBUF_O_1$iob.O
+Info:  7.1  7.1    Net cor.in[5] budget 37.037037 ns (7,28) -> (32,25)
+Info:                Sink dec.s2_LUT4_F_LC.B
+Info:                Defined in:
+Info:                  ../design/receptor.sv:12.15-16.2
+Info:                  ../design/decodificador.sv:3.23-3.25
+Info:  1.1  8.2  Source dec.s2_LUT4_F_LC.F
+Info:  2.4 10.6    Net dec.s2 budget 17.969519 ns (32,25) -> (31,17)
+Info:                Sink cor.syn_ALU_SUM_ALULC.A
+Info:                Defined in:
+Info:                  ../design/receptor.sv:12.15-16.2
+Info:                  ../design/decodificador.sv:20.12-20.15
+Info:  1.0 11.6  Source cor.syn_ALU_SUM_ALULC.F
+Info:  1.2 12.9    Net syn[2] budget 11.636012 ns (31,17) -> (32,16)
+Info:                Sink cor.corr_LUT4_F_1_LC.C
+Info:                Defined in:
+Info:                  ../design/receptor.sv:9.12-9.15
+Info:  0.8 13.7  Source cor.corr_LUT4_F_1_LC.F
+Info:  4.3 18.0    Net cor.corr[4] budget 8.452509 ns (32,16) -> (46,13)
+Info:                Sink data_OBUF_O_2$iob.I
+Info:                Defined in:
+Info:                  ../design/receptor.sv:19.11-23.2
+Info:                  ../design/corrector.sv:4.23-4.27
+Info: 3.0 ns logic, 15.0 ns routing
+
+Info: Max delay <async> -> <async>: 17.99 ns
+
+Info: Slack histogram:
+Info:  legend: * represents 1 endpoint(s)
+Info:          + represents [1,1) endpoint(s)
+Info: [ 19045,  19929) |**** 
+Info: [ 19929,  20813) | 
+Info: [ 20813,  21697) |* 
+Info: [ 21697,  22581) |** 
+Info: [ 22581,  23465) | 
+Info: [ 23465,  24349) |* 
+Info: [ 24349,  25233) |******** 
+Info: [ 25233,  26117) |*** 
+Info: [ 26117,  27001) |*** 
+Info: [ 27001,  27885) | 
+Info: [ 27885,  28769) |*** 
+Info: [ 28769,  29653) |*** 
+Info: [ 29653,  30537) |****** 
+Info: [ 30537,  31421) | 
+Info: [ 31421,  32305) | 
+Info: [ 32305,  33189) |* 
+Info: [ 33189,  34073) |*** 
+Info: [ 34073,  34957) |**** 
+Info: [ 34957,  35841) | 
+Info: [ 35841,  36725) |*** 
+
+Info: Program finished normally.

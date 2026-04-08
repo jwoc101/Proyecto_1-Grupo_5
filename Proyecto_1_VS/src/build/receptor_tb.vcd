@@ -1,0 +1,189 @@
+$date
+	Tue Apr  7 19:54:58 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module receptor_tb $end
+$var wire 7 ! raw [6:0] $end
+$var wire 3 " err [2:0] $end
+$var wire 4 # data [3:0] $end
+$var reg 7 $ in [6:0] $end
+$scope module uut $end
+$var wire 3 % err [2:0] $end
+$var wire 7 & in [6:0] $end
+$var wire 3 ' syn [2:0] $end
+$var wire 7 ( raw [6:0] $end
+$var wire 4 ) data [3:0] $end
+$scope module cor $end
+$var wire 7 * in [6:0] $end
+$var wire 3 + syn [2:0] $end
+$var wire 3 , err [2:0] $end
+$var wire 4 - data [3:0] $end
+$var wire 7 . corr [6:0] $end
+$upscope $end
+$scope module dec $end
+$var wire 7 / data [6:0] $end
+$var wire 7 0 in [6:0] $end
+$var wire 1 1 s0 $end
+$var wire 1 2 s1 $end
+$var wire 1 3 s2 $end
+$var wire 3 4 err [2:0] $end
+$upscope $end
+$upscope $end
+$scope task show $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b100 4
+13
+02
+01
+b1011010 0
+b1011010 /
+b1010010 .
+b1010 -
+b100 ,
+b100 +
+b1011010 *
+b1010 )
+b1011010 (
+b100 '
+b1011010 &
+b100 %
+b1011010 $
+b1010 #
+b100 "
+b1011010 !
+$end
+#10000
+b1000 #
+b1000 )
+b1000 -
+b101 +
+b101 "
+b101 %
+b101 '
+b101 ,
+b101 4
+11
+b1001011 .
+b1011011 !
+b1011011 (
+b1011011 /
+b1011011 $
+b1011011 &
+b1011011 *
+b1011011 0
+#20000
+b111 +
+b111 "
+b111 %
+b111 '
+b111 ,
+b111 4
+12
+b11 #
+b11 )
+b11 -
+b11110 .
+b1011110 !
+b1011110 (
+b1011110 /
+b1011110 $
+b1011110 &
+b1011110 *
+b1011110 0
+#30000
+b11 #
+b11 )
+b11 -
+b11110 .
+11
+12
+b11 +
+b11 "
+b11 %
+b11 '
+b11 ,
+b11 4
+03
+b11010 !
+b11010 (
+b11010 /
+b11010 $
+b11010 &
+b11010 *
+b11010 0
+#40000
+01
+b110 #
+b110 )
+b110 -
+02
+b0 +
+b0 "
+b0 %
+b0 '
+b0 ,
+b0 4
+03
+b110011 .
+b110011 !
+b110011 (
+b110011 /
+b110011 $
+b110011 &
+b110011 *
+b110011 0
+#50000
+b0 #
+b0 )
+b0 -
+01
+02
+b0 +
+b0 "
+b0 %
+b0 '
+b0 ,
+b0 4
+03
+b0 .
+b0 !
+b0 (
+b0 /
+b0 $
+b0 &
+b0 *
+b0 0
+#60000
+b101 #
+b101 )
+b101 -
+b101101 .
+11
+12
+b111 +
+b111 "
+b111 %
+b111 '
+b111 ,
+b111 4
+13
+b1101101 !
+b1101101 (
+b1101101 /
+b1101101 $
+b1101101 &
+b1101101 *
+b1101101 0
+#70000

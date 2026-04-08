@@ -1,0 +1,190 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{color}
+\usepackage[table]{xcolor}
+\usepackage[spanish]{babel}
+
+% Page margins
+\geometry{a4paper, margin=1in}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textit{Proyecto Corto 1}}
+\fancyhead[R]{\textit{\today}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Date format for entries
+\usepackage{datetime}
+\newdateformat{logdate}{\twodigit{\THEDAY}~\shortmonthname~\THEYEAR}
+
+% Custom section for log entries
+\titleformat{\section}
+  {\normalfont\Large\bfseries}
+  {Entry \#\thesection:}
+  {0.5em}
+  {}
+
+% Entry counter
+\newcounter{entrycount}
+\setcounter{entrycount}{0}
+
+% New log entry command
+\newcommand{\logentry}[3]{%
+  \refstepcounter{entrycount}%
+  \section*{Bitácora \#\theentrycount: #1}%
+  \hfill\textit{#2}\\[0.2cm]
+  #3
+  \vspace{0.5cm}
+  \hrule
+  \vspace{0.5cm}
+}
+
+\begin{document}
+
+% Title
+\begin{center}
+    {\huge \textbf{Bitácora}}\\[0.3cm]
+    {\large \textbf{Proyecto:}} Diseño digital combinacional en dispositivos programables\\[0.2cm]
+    {\large \textbf{Repositorio:}}
+    {\large \textbf{Estudiante:}} Julián Murillo Wo Ching\\[0.2cm]
+    {\large \textbf{Carné:}} 2024096679\\[0.2cm]
+    {\large \textbf{Grupo:}} 1
+\end{center}
+
+\vspace{1cm}
+\hrule
+\vspace{0.5cm}
+
+
+\logentry{}{24 de marzo}{
+    
+    \textbf{Planificación de Receptor:}
+    \begin{enumerate}
+    
+        \item \underline{Módulo decodificador:} 
+        	Recibe 7 bits del transmisor. Decodifica, y determina cual bit contiene el error controlado.
+        \item \underline{Módulo de corrección:} Recibe los 7 bits del transmisor, y 3 bits adicionales del módulo decodificador. Identifica el error y lo corrige. Manda 4 bits de información correcta al módulo de despliegue en binario y al selector.
+        \item \underline{Módulo de despliegue en binario:} Recibe los 4 bits del módulo de corrección y los visualiza mediante los LEDs en la FPGA. 
+        \item \underline{Módulo de despliegue en display:} Recibe datos del módulo de despliegue en binario y los códifica en hexadecimal para ser visualizados en un display de 7 segmentos.
+        \item \underline{Selector:} Recibe 4 bits del módulo decodificador y 4 bits del módulo de corrección. Mediante un bit adicional que proviene de un switch decide cual de los cuatro bits mandarle al módulo de despliegue en display.
+
+    \end{enumerate}
+    
+   % \textbf{Observations/Notes:}
+    %\begin{itemize}
+     %   \item Everything installed smoothly
+      %  \item Need to verify configuration tomorrow
+    %\end{itemize}
+    
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=\linewidth]{modulos_receptor_guia.png}
+    \caption{Esquema de módulos de receptor}
+\end{figure}	    
+    
+	\vspace{2cm}    
+    
+    \textbf{Investigar:}
+    \begin{itemize}
+        \item Algoritmo de Hamming, Hamming (7,4)
+        \item Especificaciones y programación en FPGA con SystemVerilog (transmición de datos, visualización con LEDs)
+        \item Elaboración de diagramas de bloques para subsistemas
+    \end{itemize}
+}
+
+\logentry{}{2 de abril}{
+
+	\textbf{Sesión de estudio de Verilog:} Quick Start Guide to Verilog\cite{lameres2024}
+	
+	Capítulo 2: Módulos, Puertos, Señales, Parámetros, Vectores, Directivas de compilador	
+	
+	Capítulo 3: Operadores, Asignación Continua
+	\\
+
+	
+}
+
+\logentry{}{6 de abril}{
+
+	\textbf{Resumen:}
+	\begin{itemize}
+		\item Sesión de estudio de códigos de corrección Hamming
+		\item Sesión de troubleshooting para comando \texttt{make load	}
+		\item Pruebas preliminares de programación en el FPGA con módulos de prueba
+	\end{itemize}
+	
+	\vspace{1cm}
+	
+	\textbf{Sesión de estudio de códigos de corrección Hamming:} 
+	
+	But what are Hamming codes? The origin of error correction\cite{3B1B2020}
+	
+	\vspace{1cm}
+	
+	\textbf{Sesión de Troubleshooting:}
+	
+	\underline{Problema:} El comando del Makefile \texttt{make load} no estaba abriendo el FPGA a pesar de estar conectado e identificado. Se identificó que el driver \textit{ftdi\_sio} de Archlinux estaba utilizando el FPGA de manera exclusiva y continua. Este driver no permite que la herramienta FPGA obtenga acceso directo al dispositivo USB para programación basada en JTAG.
+	
+	\underline{Solución:} Se desmontó el driver con el comando: \texttt{sudo rmmod ftdi\_sio }
+	
+	\vspace{0.5cm}
+	
+	\underline{Problema:} \texttt{make load} no detectó ningún archivo o directorio llamado openFPGAloader.
+	
+	\underline{Solución:} Se instaló la herramienta correspondiente con el comando: \texttt{yay -S openfpgaloader}
+	\\
+	
+}
+
+\logentry{}{7 de abril}{
+
+	\textbf{Programación de Modulos}
+	
+	
+
+}
+
+	\begin{thebibliography}{99}
+	\bibitem{lameres2024}
+	B. J. LaMeres, \textit{Quick Start Guide to Verilog}, 2nd ed., Cham, Switzerland: Springer, 2024.
+	\bibitem{3B1B2020}
+	3Blue1Brown, \textit{But what are Hamming codes? The origin of error correction}, YouTube, 4 de septiembre de 2020. [En línea]. Disponible en: https://www.youtube.com/watch?v=X8jsijhllIA
+	\end{thebibliography}
+% ------------------------------------------------------------
+% Copy this block for each new log entry
+% ------------------------------------------------------------
+% \logentry{[Entry Title]}{
+%     \textbf{Date:} \logdate\today\\
+%     \textbf{Time Spent:} [duration]\\
+%     \textbf{Category:} [type]\\
+%     
+%     \textbf{What I did:}
+%     \begin{itemize}
+%         \item [task 1]
+%         \item [task 2]
+%     \end{itemize}
+%     
+%     \textbf{Observations/Notes:}
+%     \begin{itemize}
+%         \item [observation 1]
+%         \item [observation 2]
+%     \end{itemize}
+%     
+%     \textbf{Next Steps:}
+%     \begin{enumerate}
+%         \item [next action 1]
+%         \item [next action 2]
+%     \end{itemize}
+% }
+% ------------------------------------------------------------
+
+\end{document}
