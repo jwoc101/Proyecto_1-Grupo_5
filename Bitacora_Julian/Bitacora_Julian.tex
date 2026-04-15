@@ -174,6 +174,81 @@
 
 }
 
+\logentry{}{11 de abril}{
+
+	\textbf{Alambrado de circuito:}
+	
+	\begin{itemize}
+	\item Se incorporó el display de 7 segmentos a los pines de salida respectivos
+	\item Se verificó la funcionalidad de los LEDs incorporados en la FPGA.
+	\end{itemize}
+
+\vspace{1cm}
+
+	\textbf{Notas}
+	\begin{itemize}
+	\item Se descubrió que las LEDs de la FPGA se encienden con un \'cero\' lógico. Se invirtió la entrada del módulo \texttt{led\_display.sv}.
+	\item El módulo \texttt{seg7\_display.sv} fue diseñado para un display de ánodo común, pero en la práctica se utilizó uno de cátodo común, por lo que también está invertido.
+	\end{itemize}
+
+}
+
+\logentry{}{12 de abril}{
+
+	\textbf{Acciones:}
+	\begin{itemize}
+	\item Se incorporaron 4 LEDs adicionales al circuito para indicar ya sea el mensaje decodificado, o la posición del error detectado y corregido. 
+	\item Se hizo un testbench que prueba todas las entradas posibles con solo un 'uno' lógico en alguna de sus posiciones. También permite añadir fácilmente entradas personalizadas.
+	\end{itemize}
+	
+\vspace{1cm}	
+	
+	\textbf{Notas:}
+	\begin{itemize}
+	\item Se carece de un multiplexor de 2 entradas de 4 bits, así como un switch. Por lo tanto, los cuatro LEDs incorporados hoy no cumples con la funcionalidad dual descrita. Por el momento se tienen que conectar manualmente los pines de la palabra, así como los pines de la posición de error, a preferencia. 
+	\item Como la palabra decodificada es de 4 bits, pero la posición del error es de 3, hay un LED que no se utiliza al enseñar la posición del error. Este corresponde al del bit más significativo de la palabra corregida en binario. 
+	\end{itemize}		
+	
+}
+
+\logentry{}{13 de abril}{
+
+	\textbf{Reunión con Pareja del Transmisor:}
+	\begin{itemize}
+	\item Se tuvo que invertir el orden de asignación de los \texttt{wire} de la palabra corregida y la posición del error, convirtiendo sus bits más significativos en los menos significativos y vice versa. Esto se hizo por motivos de funcionalidad con el transmisor. Esta medida solo se tomó para la revisión conjunta, el código en el repositorio no posee esta particularidad.
+	\item Se comprobó el funcionamiento exitoso del circuito receptor.
+	\end{itemize}
+
+\vspace{1cm}
+
+	\textbf{Acciones Adicionales:}
+	\begin{itemize}
+	\item Se obtuvo un multiplexor 74ls157, así como un switch. 
+	\item Se incorporó exitosamente el módulo selector del circuito.
+	\end{itemize}
+
+
+}
+
+
+\logentry{}{14 de abril}{
+
+	\textbf{Revisión (Recomendaciones del Asistente):}
+	\begin{itemize}
+	\item Añadir resistencias de \textit{pull\-down} a los pines de entradada para proteger la FPGA.
+	\item Utilizar \texttt{logic} en vez de \texttt{wire} en el código de Verilog para mejor grabado de datos. 
+	\end{itemize}
+
+\vspace{1cm}
+
+	\textbf{Siguientes Pasos:}
+	\begin{itemize}
+	\item Desarrollo de diagramas de bloques para cada subsistema.
+	\item Desarrollo de informe del proyecto.
+	\end{itemize}
+
+}
+
 	\begin{thebibliography}{99}
 	\bibitem{lameres2024}
 	B. J. LaMeres, \textit{Quick Start Guide to Verilog}, 2nd ed., Cham, Switzerland: Springer, 2024.

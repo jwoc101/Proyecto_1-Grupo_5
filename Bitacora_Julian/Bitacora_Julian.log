@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026 - Flatpak) (preloaded format=pdflatex 2026.3.7)  7 APR 2026 20:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026 - Flatpak) (preloaded format=pdflatex 2026.3.7)  14 APR 2026 21:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -560,13 +560,47 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 194--194
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 212--212
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 231--231
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 250--250
+
+ []
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 13.59999pt, for example:
+(fancyhdr)                \setlength{\headheight}{13.59999pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
+
+[4]
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
 []\T1/cmr/m/n/10.95 3Blue1Brown, \T1/cmr/m/it/10.95 But what are Ham-ming co-de
 s? The ori-gin of error co-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 181--182
+Underfull \hbox (badness 10000) in paragraph at lines 256--257
 \T1/cmr/m/it/10.95 rrec-tion\T1/cmr/m/n/10.95 , You-Tu-be, 4 de sep-tiem-bre de
  2020. [En lí-nea]. Dis-po-ni-ble en:
  []
@@ -578,7 +612,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-1.59999pt}.
 
-[3] (./Bitacora_Julian.aux
+[5] (./Bitacora_Julian.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -590,23 +624,23 @@ Package rerunfilecheck Info: File `Bitacora_Julian.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13204 strings out of 467525
- 205633 string characters out of 5420560
+ 13210 strings out of 467525
+ 205693 string characters out of 5420560
  664620 words of memory out of 5000000
  41926 multiletter control sequences out of 15000+600000
  637648 words of font info for 59 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,83p,1095b,568s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,83p,1095b,579s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </app/texlive/texmf-dist/fonts/type1/public/cm-super/sfbx1095.pfb></app/texli
 ve/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></app/texlive/texmf-dist
 /fonts/type1/public/cm-super/sfbx1440.pfb></app/texlive/texmf-dist/fonts/type1/
 public/cm-super/sfbx2074.pfb></app/texlive/texmf-dist/fonts/type1/public/cm-sup
 er/sfrm1095.pfb></app/texlive/texmf-dist/fonts/type1/public/cm-super/sfti1095.p
 fb></app/texlive/texmf-dist/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on Bitacora_Julian.pdf (3 pages, 199009 bytes).
+Output written on Bitacora_Julian.pdf (5 pages, 205715 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
- 20 named destinations out of 1000 (max. 500000)
+ 95 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
+ 26 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
