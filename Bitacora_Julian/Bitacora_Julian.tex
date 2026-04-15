@@ -54,7 +54,7 @@
 \begin{center}
     {\huge \textbf{Bitácora}}\\[0.3cm]
     {\large \textbf{Proyecto:}} Diseño digital combinacional en dispositivos programables\\[0.2cm]
-    {\large \textbf{Repositorio:}}
+    {\large \textbf{Repositorio:}} \texttt{https://github.com/jwoc101/Proyecto\_1\-Grupo\_5}\\[0.2cm]
     {\large \textbf{Estudiante:}} Julián Murillo Wo Ching\\[0.2cm]
     {\large \textbf{Carné:}} 2024096679\\[0.2cm]
     {\large \textbf{Grupo:}} 1
@@ -147,8 +147,29 @@
 
 \logentry{}{7 de abril}{
 
-	\textbf{Programación de Modulos}
+	\textbf{Programación de Módulos}
+	\begin{enumerate}
+		\item \underline{Módulo decodificador:} decodificador.sv
+		
+		\item \underline{Módulo de corrección:} corrector.sv
+		
+		\item \underline{Módulo top de receptor:} receptor.sv
+		
+		\item \underline{Testbench básico:} receptor\_tb.sv
+	\end{enumerate}
 	
+	\underline{Problema encontrado:} El output proveniente de 4 pins del FPGA no corresponde al resultado deseado. Por ejemplo, para un input de 0000000 se enseña un output de 0100, cuando debería ser 0000 para Hamming(7,4). El testbench parece mostrar que la lógica de los módulos funciona correctamente, por lo que se deduce que el problema está relacionado al hardware. Posibles causas son una mala asignación de pines en los módulos y el archivo de \textit{constraints}, o el uso de pins especiales que no permiten programación. 
+	
+	\vspace{1cm}
+	
+	\textbf{Siguientes Pasos}
+	
+	\begin{itemize}
+		\item Resolver problema encontrado
+		
+		\item Continuar con programación de módulos
+	\end{itemize}		
+	 
 	
 
 }
