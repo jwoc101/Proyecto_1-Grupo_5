@@ -22,7 +22,7 @@
  Yosys 0.26+1 (git sha1 b1a011138, clang 10.0.0-4ubuntu1 -fPIC -Os)
 
 
--- Running command `read_verilog -sv ../design/corrector.sv ../design/decodificador.sv ../design/receptor.sv ; synth_gowin -top receptor -json RECEPTOR.json' --
+-- Running command `read_verilog -sv ../design/corrector.sv ../design/decodificador.sv ../design/led_display.sv ../design/receptor.sv ../design/seg7_display.sv ; synth_gowin -top receptor -json RECEPTOR.json' --
 
 1. Executing Verilog-2005 frontend: ../design/corrector.sv
 Parsing SystemVerilog input from `../design/corrector.sv' to AST representation.
@@ -34,14 +34,25 @@ Parsing SystemVerilog input from `../design/decodificador.sv' to AST representat
 Generating RTLIL representation for module `\decodificador'.
 Successfully finished Verilog frontend.
 
-3. Executing Verilog-2005 frontend: ../design/receptor.sv
+3. Executing Verilog-2005 frontend: ../design/led_display.sv
+Parsing SystemVerilog input from `../design/led_display.sv' to AST representation.
+Generating RTLIL representation for module `\led_display'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: ../design/receptor.sv
 Parsing SystemVerilog input from `../design/receptor.sv' to AST representation.
 Generating RTLIL representation for module `\receptor'.
 Successfully finished Verilog frontend.
 
-4. Executing SYNTH_GOWIN pass.
+5. Executing Verilog-2005 frontend: ../design/seg7_display.sv
+Parsing SystemVerilog input from `../design/seg7_display.sv' to AST representation.
+Generating RTLIL representation for module `\seg7_display'.
+Warning: reg '\seg7' is assigned in a continuous assignment at ../design/seg7_display.sv:59.12-59.27.
+Successfully finished Verilog frontend.
 
-4.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v
+6. Executing SYNTH_GOWIN pass.
+
+6.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v
 Parsing Verilog input from `/home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v' to AST representation.
 Generating RTLIL representation for module `\LUT1'.
 Generating RTLIL representation for module `\LUT2'.
@@ -107,345 +118,359 @@ Generating RTLIL representation for module `\OSCF'.
 Generating RTLIL representation for module `\OSCH'.
 Successfully finished Verilog frontend.
 
-4.2. Executing HIERARCHY pass (managing design hierarchy).
+6.2. Executing HIERARCHY pass (managing design hierarchy).
 
-4.2.1. Analyzing design hierarchy..
+6.2.1. Analyzing design hierarchy..
 Top module:  \receptor
+Used module:     \seg7_display
+Used module:     \led_display
 Used module:     \corrector
 Used module:     \decodificador
 
-4.2.2. Analyzing design hierarchy..
+6.2.2. Analyzing design hierarchy..
 Top module:  \receptor
+Used module:     \seg7_display
+Used module:     \led_display
 Used module:     \corrector
 Used module:     \decodificador
 Removed 0 unused modules.
 
-4.3. Executing PROC pass (convert processes to netlists).
+6.3. Executing PROC pass (convert processes to netlists).
 
-4.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Found and cleaned up 1 empty switch in `\ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$257'.
+6.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 1 empty switch in `\ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$259'.
 Cleaned up 1 empty switch.
 
-4.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$253 in module DFFNCE.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$251 in module DFFNC.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$249 in module DFFNPE.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$247 in module DFFNP.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$245 in module DFFNRE.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$243 in module DFFNR.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$241 in module DFFNSE.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$239 in module DFFNS.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$233 in module DFFCE.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$231 in module DFFC.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$229 in module DFFPE.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$227 in module DFFP.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$225 in module DFFRE.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$223 in module DFFR.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$221 in module DFFSE.
-Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$219 in module DFFS.
-Removed a total of 0 dead cases.
+6.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$255 in module DFFNCE.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$253 in module DFFNC.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$251 in module DFFNPE.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$249 in module DFFNP.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$247 in module DFFNRE.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$245 in module DFFNR.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$243 in module DFFNSE.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$241 in module DFFNS.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$235 in module DFFCE.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$233 in module DFFC.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$231 in module DFFPE.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$229 in module DFFP.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$227 in module DFFRE.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$225 in module DFFR.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$223 in module DFFSE.
+Marked 1 switch rules as full_case in process $proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$221 in module DFFS.
+Removed 1 dead cases from process $proc$../design/seg7_display.sv:37$32 in module seg7_display.
+Marked 1 switch rules as full_case in process $proc$../design/seg7_display.sv:37$32 in module seg7_display.
+Removed a total of 1 dead cases.
 
-4.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+6.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
 Removed 8 redundant assignments.
-Promoted 26 assignments to connections.
+Promoted 27 assignments to connections.
 
-4.3.4. Executing PROC_INIT pass (extract init attributes).
-Found init rule in `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$254'.
+6.3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$256'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$252'.
+Found init rule in `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$254'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$250'.
+Found init rule in `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$252'.
   Set init value: \Q = 1'1
-Found init rule in `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$248'.
+Found init rule in `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$250'.
   Set init value: \Q = 1'1
-Found init rule in `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$246'.
+Found init rule in `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$248'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$244'.
+Found init rule in `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$246'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$242'.
+Found init rule in `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$244'.
   Set init value: \Q = 1'1
-Found init rule in `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$240'.
+Found init rule in `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$242'.
   Set init value: \Q = 1'1
-Found init rule in `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$238'.
+Found init rule in `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$240'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$236'.
+Found init rule in `\DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$238'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$234'.
+Found init rule in `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$236'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$232'.
+Found init rule in `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$234'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$230'.
+Found init rule in `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$232'.
   Set init value: \Q = 1'1
-Found init rule in `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$228'.
+Found init rule in `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$230'.
   Set init value: \Q = 1'1
-Found init rule in `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$226'.
+Found init rule in `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$228'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$224'.
+Found init rule in `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$226'.
   Set init value: \Q = 1'0
-Found init rule in `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$222'.
+Found init rule in `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$224'.
   Set init value: \Q = 1'1
-Found init rule in `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$220'.
+Found init rule in `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$222'.
   Set init value: \Q = 1'1
-Found init rule in `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$218'.
+Found init rule in `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$220'.
   Set init value: \Q = 1'0
-Found init rule in `\DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$216'.
+Found init rule in `\DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$218'.
   Set init value: \Q = 1'0
 
-4.3.5. Executing PROC_ARST pass (detect async resets in processes).
-Found async reset \CLEAR in `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$253'.
-Found async reset \CLEAR in `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$251'.
-Found async reset \PRESET in `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$249'.
-Found async reset \PRESET in `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$247'.
-Found async reset \CLEAR in `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$233'.
-Found async reset \CLEAR in `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$231'.
-Found async reset \PRESET in `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$229'.
-Found async reset \PRESET in `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$227'.
+6.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \CLEAR in `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$255'.
+Found async reset \CLEAR in `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$253'.
+Found async reset \PRESET in `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$251'.
+Found async reset \PRESET in `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$249'.
+Found async reset \CLEAR in `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$235'.
+Found async reset \CLEAR in `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$233'.
+Found async reset \PRESET in `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$231'.
+Found async reset \PRESET in `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$229'.
 
-4.3.6. Executing PROC_ROM pass (convert switches to ROMs).
-Converted 0 switches.
+6.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 1 switch.
 <suppressed ~18 debug messages>
 
-4.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
-Creating decoders for process `\ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$257'.
-Creating decoders for process `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$254'.
-Creating decoders for process `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$253'.
+6.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `\ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$259'.
+Creating decoders for process `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$256'.
+Creating decoders for process `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$255'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$252'.
-Creating decoders for process `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$251'.
+Creating decoders for process `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$254'.
+Creating decoders for process `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$253'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$250'.
-Creating decoders for process `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$249'.
+Creating decoders for process `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$252'.
+Creating decoders for process `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$251'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$248'.
-Creating decoders for process `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$247'.
+Creating decoders for process `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$250'.
+Creating decoders for process `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$249'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$246'.
-Creating decoders for process `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$245'.
+Creating decoders for process `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$248'.
+Creating decoders for process `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$247'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$244'.
-Creating decoders for process `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$243'.
+Creating decoders for process `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$246'.
+Creating decoders for process `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$245'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$242'.
-Creating decoders for process `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$241'.
+Creating decoders for process `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$244'.
+Creating decoders for process `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$243'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$240'.
-Creating decoders for process `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$239'.
+Creating decoders for process `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$242'.
+Creating decoders for process `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$241'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$238'.
-Creating decoders for process `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:381$237'.
+Creating decoders for process `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$240'.
+Creating decoders for process `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:381$239'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$236'.
-Creating decoders for process `\DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:366$235'.
-Creating decoders for process `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$234'.
-Creating decoders for process `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$233'.
+Creating decoders for process `\DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$238'.
+Creating decoders for process `\DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:366$237'.
+Creating decoders for process `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$236'.
+Creating decoders for process `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$235'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$232'.
-Creating decoders for process `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$231'.
+Creating decoders for process `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$234'.
+Creating decoders for process `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$233'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$230'.
-Creating decoders for process `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$229'.
+Creating decoders for process `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$232'.
+Creating decoders for process `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$231'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$228'.
-Creating decoders for process `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$227'.
+Creating decoders for process `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$230'.
+Creating decoders for process `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$229'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$226'.
-Creating decoders for process `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$225'.
+Creating decoders for process `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$228'.
+Creating decoders for process `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$227'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$224'.
-Creating decoders for process `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$223'.
+Creating decoders for process `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$226'.
+Creating decoders for process `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$225'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$222'.
-Creating decoders for process `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$221'.
+Creating decoders for process `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$224'.
+Creating decoders for process `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$223'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$220'.
-Creating decoders for process `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$219'.
+Creating decoders for process `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$222'.
+Creating decoders for process `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$221'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$218'.
-Creating decoders for process `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:194$217'.
+Creating decoders for process `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$220'.
+Creating decoders for process `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:194$219'.
      1/1: $0\Q[0:0]
-Creating decoders for process `\DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$216'.
-Creating decoders for process `\DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:179$215'.
+Creating decoders for process `\DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$218'.
+Creating decoders for process `\DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:179$217'.
+Creating decoders for process `\seg7_display.$proc$../design/seg7_display.sv:37$32'.
+     1/1: $1\seg_int[6:0]
 
-4.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+6.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `\seg7_display.\seg_int' from process `\seg7_display.$proc$../design/seg7_display.sv:37$32'.
 
-4.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
-Creating register for signal `\ALU.\C' using process `\ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$257'.
+6.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `\ALU.\C' using process `\ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$259'.
   created direct connection (no actual register cell created).
-Creating register for signal `\ALU.\S' using process `\ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$257'.
+Creating register for signal `\ALU.\S' using process `\ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$259'.
   created direct connection (no actual register cell created).
-Creating register for signal `\DFFNCE.\Q' using process `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$253'.
-  created $adff cell `$procdff$345' with negative edge clock and positive level reset.
-Creating register for signal `\DFFNC.\Q' using process `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$251'.
-  created $adff cell `$procdff$346' with negative edge clock and positive level reset.
-Creating register for signal `\DFFNPE.\Q' using process `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$249'.
-  created $adff cell `$procdff$347' with negative edge clock and positive level reset.
-Creating register for signal `\DFFNP.\Q' using process `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$247'.
-  created $adff cell `$procdff$348' with negative edge clock and positive level reset.
-Creating register for signal `\DFFNRE.\Q' using process `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$245'.
-  created $dff cell `$procdff$349' with negative edge clock.
-Creating register for signal `\DFFNR.\Q' using process `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$243'.
-  created $dff cell `$procdff$350' with negative edge clock.
-Creating register for signal `\DFFNSE.\Q' using process `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$241'.
-  created $dff cell `$procdff$351' with negative edge clock.
-Creating register for signal `\DFFNS.\Q' using process `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$239'.
-  created $dff cell `$procdff$352' with negative edge clock.
-Creating register for signal `\DFFNE.\Q' using process `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:381$237'.
-  created $dff cell `$procdff$353' with negative edge clock.
-Creating register for signal `\DFFN.\Q' using process `\DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:366$235'.
-  created $dff cell `$procdff$354' with negative edge clock.
-Creating register for signal `\DFFCE.\Q' using process `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$233'.
-  created $adff cell `$procdff$355' with positive edge clock and positive level reset.
-Creating register for signal `\DFFC.\Q' using process `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$231'.
-  created $adff cell `$procdff$356' with positive edge clock and positive level reset.
-Creating register for signal `\DFFPE.\Q' using process `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$229'.
-  created $adff cell `$procdff$357' with positive edge clock and positive level reset.
-Creating register for signal `\DFFP.\Q' using process `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$227'.
-  created $adff cell `$procdff$358' with positive edge clock and positive level reset.
-Creating register for signal `\DFFRE.\Q' using process `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$225'.
-  created $dff cell `$procdff$359' with positive edge clock.
-Creating register for signal `\DFFR.\Q' using process `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$223'.
-  created $dff cell `$procdff$360' with positive edge clock.
-Creating register for signal `\DFFSE.\Q' using process `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$221'.
-  created $dff cell `$procdff$361' with positive edge clock.
-Creating register for signal `\DFFS.\Q' using process `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$219'.
-  created $dff cell `$procdff$362' with positive edge clock.
-Creating register for signal `\DFFE.\Q' using process `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:194$217'.
-  created $dff cell `$procdff$363' with positive edge clock.
-Creating register for signal `\DFF.\Q' using process `\DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:179$215'.
-  created $dff cell `$procdff$364' with positive edge clock.
+Creating register for signal `\DFFNCE.\Q' using process `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$255'.
+  created $adff cell `$procdff$352' with negative edge clock and positive level reset.
+Creating register for signal `\DFFNC.\Q' using process `\DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$253'.
+  created $adff cell `$procdff$353' with negative edge clock and positive level reset.
+Creating register for signal `\DFFNPE.\Q' using process `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$251'.
+  created $adff cell `$procdff$354' with negative edge clock and positive level reset.
+Creating register for signal `\DFFNP.\Q' using process `\DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$249'.
+  created $adff cell `$procdff$355' with negative edge clock and positive level reset.
+Creating register for signal `\DFFNRE.\Q' using process `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$247'.
+  created $dff cell `$procdff$356' with negative edge clock.
+Creating register for signal `\DFFNR.\Q' using process `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$245'.
+  created $dff cell `$procdff$357' with negative edge clock.
+Creating register for signal `\DFFNSE.\Q' using process `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$243'.
+  created $dff cell `$procdff$358' with negative edge clock.
+Creating register for signal `\DFFNS.\Q' using process `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$241'.
+  created $dff cell `$procdff$359' with negative edge clock.
+Creating register for signal `\DFFNE.\Q' using process `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:381$239'.
+  created $dff cell `$procdff$360' with negative edge clock.
+Creating register for signal `\DFFN.\Q' using process `\DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:366$237'.
+  created $dff cell `$procdff$361' with negative edge clock.
+Creating register for signal `\DFFCE.\Q' using process `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$235'.
+  created $adff cell `$procdff$362' with positive edge clock and positive level reset.
+Creating register for signal `\DFFC.\Q' using process `\DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$233'.
+  created $adff cell `$procdff$363' with positive edge clock and positive level reset.
+Creating register for signal `\DFFPE.\Q' using process `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$231'.
+  created $adff cell `$procdff$364' with positive edge clock and positive level reset.
+Creating register for signal `\DFFP.\Q' using process `\DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$229'.
+  created $adff cell `$procdff$365' with positive edge clock and positive level reset.
+Creating register for signal `\DFFRE.\Q' using process `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$227'.
+  created $dff cell `$procdff$366' with positive edge clock.
+Creating register for signal `\DFFR.\Q' using process `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$225'.
+  created $dff cell `$procdff$367' with positive edge clock.
+Creating register for signal `\DFFSE.\Q' using process `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$223'.
+  created $dff cell `$procdff$368' with positive edge clock.
+Creating register for signal `\DFFS.\Q' using process `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$221'.
+  created $dff cell `$procdff$369' with positive edge clock.
+Creating register for signal `\DFFE.\Q' using process `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:194$219'.
+  created $dff cell `$procdff$370' with positive edge clock.
+Creating register for signal `\DFF.\Q' using process `\DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:179$217'.
+  created $dff cell `$procdff$371' with positive edge clock.
 
-4.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+6.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
-4.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
-Removing empty process `ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$257'.
-Removing empty process `DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$254'.
-Found and cleaned up 1 empty switch in `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$253'.
-Removing empty process `DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$253'.
-Removing empty process `DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$252'.
-Removing empty process `DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$251'.
-Removing empty process `DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$250'.
-Found and cleaned up 1 empty switch in `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$249'.
-Removing empty process `DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$249'.
-Removing empty process `DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$248'.
-Removing empty process `DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$247'.
-Removing empty process `DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$246'.
-Found and cleaned up 2 empty switches in `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$245'.
-Removing empty process `DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$245'.
-Removing empty process `DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$244'.
-Found and cleaned up 1 empty switch in `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$243'.
-Removing empty process `DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$243'.
-Removing empty process `DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$242'.
-Found and cleaned up 2 empty switches in `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$241'.
-Removing empty process `DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$241'.
-Removing empty process `DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$240'.
-Found and cleaned up 1 empty switch in `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$239'.
-Removing empty process `DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$239'.
-Removing empty process `DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$238'.
-Found and cleaned up 1 empty switch in `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:381$237'.
-Removing empty process `DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:381$237'.
-Removing empty process `DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$236'.
-Removing empty process `DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:366$235'.
-Removing empty process `DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$234'.
-Found and cleaned up 1 empty switch in `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$233'.
-Removing empty process `DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$233'.
-Removing empty process `DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$232'.
-Removing empty process `DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$231'.
-Removing empty process `DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$230'.
-Found and cleaned up 1 empty switch in `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$229'.
-Removing empty process `DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$229'.
-Removing empty process `DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$228'.
-Removing empty process `DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$227'.
-Removing empty process `DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$226'.
-Found and cleaned up 2 empty switches in `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$225'.
-Removing empty process `DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$225'.
-Removing empty process `DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$224'.
-Found and cleaned up 1 empty switch in `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$223'.
-Removing empty process `DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$223'.
-Removing empty process `DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$222'.
-Found and cleaned up 2 empty switches in `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$221'.
-Removing empty process `DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$221'.
-Removing empty process `DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$220'.
-Found and cleaned up 1 empty switch in `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$219'.
-Removing empty process `DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$219'.
-Removing empty process `DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$218'.
-Found and cleaned up 1 empty switch in `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:194$217'.
-Removing empty process `DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:194$217'.
-Removing empty process `DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$216'.
-Removing empty process `DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:179$215'.
-Cleaned up 18 empty switches.
+6.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Removing empty process `ALU.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:661$259'.
+Removing empty process `DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$256'.
+Found and cleaned up 1 empty switch in `\DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$255'.
+Removing empty process `DFFNCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:535$255'.
+Removing empty process `DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$254'.
+Removing empty process `DFFNC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:515$253'.
+Removing empty process `DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$252'.
+Found and cleaned up 1 empty switch in `\DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$251'.
+Removing empty process `DFFNPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:496$251'.
+Removing empty process `DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$250'.
+Removing empty process `DFFNP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:476$249'.
+Removing empty process `DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$248'.
+Found and cleaned up 2 empty switches in `\DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$247'.
+Removing empty process `DFFNRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:457$247'.
+Removing empty process `DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$246'.
+Found and cleaned up 1 empty switch in `\DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$245'.
+Removing empty process `DFFNR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:437$245'.
+Removing empty process `DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$244'.
+Found and cleaned up 2 empty switches in `\DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$243'.
+Removing empty process `DFFNSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:418$243'.
+Removing empty process `DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$242'.
+Found and cleaned up 1 empty switch in `\DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$241'.
+Removing empty process `DFFNS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:398$241'.
+Removing empty process `DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$240'.
+Found and cleaned up 1 empty switch in `\DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:381$239'.
+Removing empty process `DFFNE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:381$239'.
+Removing empty process `DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$238'.
+Removing empty process `DFFN.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:366$237'.
+Removing empty process `DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$236'.
+Found and cleaned up 1 empty switch in `\DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$235'.
+Removing empty process `DFFCE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:348$235'.
+Removing empty process `DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$234'.
+Removing empty process `DFFC.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:328$233'.
+Removing empty process `DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$232'.
+Found and cleaned up 1 empty switch in `\DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$231'.
+Removing empty process `DFFPE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:309$231'.
+Removing empty process `DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$230'.
+Removing empty process `DFFP.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:289$229'.
+Removing empty process `DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$228'.
+Found and cleaned up 2 empty switches in `\DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$227'.
+Removing empty process `DFFRE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:270$227'.
+Removing empty process `DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$226'.
+Found and cleaned up 1 empty switch in `\DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$225'.
+Removing empty process `DFFR.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:250$225'.
+Removing empty process `DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$224'.
+Found and cleaned up 2 empty switches in `\DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$223'.
+Removing empty process `DFFSE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:231$223'.
+Removing empty process `DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$222'.
+Found and cleaned up 1 empty switch in `\DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$221'.
+Removing empty process `DFFS.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:211$221'.
+Removing empty process `DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$220'.
+Found and cleaned up 1 empty switch in `\DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:194$219'.
+Removing empty process `DFFE.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:194$219'.
+Removing empty process `DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:0$218'.
+Removing empty process `DFF.$proc$/home/julian/Documents/TEC/Dise$c3$b1o_L$c3$b3gico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_sim.v:179$217'.
+Found and cleaned up 1 empty switch in `\seg7_display.$proc$../design/seg7_display.sv:37$32'.
+Removing empty process `seg7_display.$proc$../design/seg7_display.sv:37$32'.
+Cleaned up 19 empty switches.
 
-4.3.12. Executing OPT_EXPR pass (perform const folding).
+6.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module seg7_display.
 Optimizing module receptor.
+Optimizing module led_display.
 Optimizing module decodificador.
 Optimizing module corrector.
-<suppressed ~1 debug messages>
 
-4.4. Executing FLATTEN pass (flatten design).
+6.4. Executing FLATTEN pass (flatten design).
+Deleting now unused module seg7_display.
+Deleting now unused module led_display.
 Deleting now unused module decodificador.
 Deleting now unused module corrector.
-<suppressed ~2 debug messages>
+<suppressed ~4 debug messages>
 
-4.5. Executing TRIBUF pass.
+6.5. Executing TRIBUF pass.
 
-4.6. Executing DEMINOUT pass (demote inout ports to input or output).
+6.6. Executing DEMINOUT pass (demote inout ports to input or output).
 
-4.7. Executing SYNTH pass.
+6.7. Executing SYNTH pass.
 
-4.7.1. Executing PROC pass (convert processes to netlists).
+6.7.1. Executing PROC pass (convert processes to netlists).
 
-4.7.1.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+6.7.1.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
 Cleaned up 0 empty switches.
 
-4.7.1.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+6.7.1.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
 Removed a total of 0 dead cases.
 
-4.7.1.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+6.7.1.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
 Removed 0 redundant assignments.
 Promoted 0 assignments to connections.
 
-4.7.1.4. Executing PROC_INIT pass (extract init attributes).
+6.7.1.4. Executing PROC_INIT pass (extract init attributes).
 
-4.7.1.5. Executing PROC_ARST pass (detect async resets in processes).
+6.7.1.5. Executing PROC_ARST pass (detect async resets in processes).
 
-4.7.1.6. Executing PROC_ROM pass (convert switches to ROMs).
+6.7.1.6. Executing PROC_ROM pass (convert switches to ROMs).
 Converted 0 switches.
 
-4.7.1.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+6.7.1.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
 
-4.7.1.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+6.7.1.8. Executing PROC_DLATCH pass (convert process syncs to latches).
 
-4.7.1.9. Executing PROC_DFF pass (convert process syncs to FFs).
+6.7.1.9. Executing PROC_DFF pass (convert process syncs to FFs).
 
-4.7.1.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+6.7.1.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
 
-4.7.1.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+6.7.1.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
 Cleaned up 0 empty switches.
 
-4.7.1.12. Executing OPT_EXPR pass (perform const folding).
+6.7.1.12. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.7.2. Executing OPT_EXPR pass (perform const folding).
+6.7.2. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.7.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.3. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
-Removed 9 unused cells and 17 unused wires.
+Removed 9 unused cells and 21 unused wires.
 <suppressed ~10 debug messages>
 
-4.7.4. Executing CHECK pass (checking for obvious problems).
+6.7.4. Executing CHECK pass (checking for obvious problems).
 Checking module receptor...
 Found and reported 0 problems.
 
-4.7.5. Executing OPT pass (performing simple optimizations).
+6.7.5. Executing OPT pass (performing simple optimizations).
 
-4.7.5.1. Executing OPT_EXPR pass (perform const folding).
+6.7.5.1. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.7.5.2. Executing OPT_MERGE pass (detect identical cells).
+6.7.5.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
 Removed a total of 0 cells.
 
-4.7.5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.7.5.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
 Running muxtree optimizer on module \receptor..
   Creating internal representation of mux trees.
   Evaluating internal representation of mux trees.
@@ -453,53 +478,53 @@ Running muxtree optimizer on module \receptor..
 Removed 0 multiplexer ports.
 <suppressed ~4 debug messages>
 
-4.7.5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.7.5.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \receptor.
 Performed a total of 0 changes.
 
-4.7.5.5. Executing OPT_MERGE pass (detect identical cells).
+6.7.5.5. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
 Removed a total of 0 cells.
 
-4.7.5.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.7.5.6. Executing OPT_DFF pass (perform DFF optimizations).
 
-4.7.5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.5.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.7.5.8. Executing OPT_EXPR pass (perform const folding).
+6.7.5.8. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.7.5.9. Finished OPT passes. (There is nothing left to do.)
+6.7.5.9. Finished OPT passes. (There is nothing left to do.)
 
-4.7.6. Executing FSM pass (extract and optimize FSM).
+6.7.6. Executing FSM pass (extract and optimize FSM).
 
-4.7.6.1. Executing FSM_DETECT pass (finding FSMs in design).
+6.7.6.1. Executing FSM_DETECT pass (finding FSMs in design).
 
-4.7.6.2. Executing FSM_EXTRACT pass (extracting FSM from design).
+6.7.6.2. Executing FSM_EXTRACT pass (extracting FSM from design).
 
-4.7.6.3. Executing FSM_OPT pass (simple optimizations of FSMs).
+6.7.6.3. Executing FSM_OPT pass (simple optimizations of FSMs).
 
-4.7.6.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.6.4. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.7.6.5. Executing FSM_OPT pass (simple optimizations of FSMs).
+6.7.6.5. Executing FSM_OPT pass (simple optimizations of FSMs).
 
-4.7.6.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
+6.7.6.6. Executing FSM_RECODE pass (re-assigning FSM state encoding).
 
-4.7.6.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
+6.7.6.7. Executing FSM_INFO pass (dumping all available information on FSM cells).
 
-4.7.6.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
+6.7.6.8. Executing FSM_MAP pass (mapping FSMs to basic logic).
 
-4.7.7. Executing OPT pass (performing simple optimizations).
+6.7.7. Executing OPT pass (performing simple optimizations).
 
-4.7.7.1. Executing OPT_EXPR pass (perform const folding).
+6.7.7.1. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.7.7.2. Executing OPT_MERGE pass (detect identical cells).
+6.7.7.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
 Removed a total of 0 cells.
 
-4.7.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.7.7.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
 Running muxtree optimizer on module \receptor..
   Creating internal representation of mux trees.
   Evaluating internal representation of mux trees.
@@ -507,52 +532,49 @@ Running muxtree optimizer on module \receptor..
 Removed 0 multiplexer ports.
 <suppressed ~4 debug messages>
 
-4.7.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.7.7.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \receptor.
 Performed a total of 0 changes.
 
-4.7.7.5. Executing OPT_MERGE pass (detect identical cells).
+6.7.7.5. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
 Removed a total of 0 cells.
 
-4.7.7.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.7.7.6. Executing OPT_DFF pass (perform DFF optimizations).
 
-4.7.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.7.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.7.7.8. Executing OPT_EXPR pass (perform const folding).
+6.7.7.8. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.7.7.9. Finished OPT passes. (There is nothing left to do.)
+6.7.7.9. Finished OPT passes. (There is nothing left to do.)
 
-4.7.8. Executing WREDUCE pass (reducing word size of cells).
-Removed top 2 bits (of 3) from port B of cell receptor.$flatten\dec.$sub$../design/decodificador.sv:23$31 ($sub).
-Removed top 1 bits (of 3) from port B of cell receptor.$flatten\cor.$eq$../design/corrector.sv:19$7 ($eq).
+6.7.8. Executing WREDUCE pass (reducing word size of cells).
+Removed top 28 address bits (of 32) from memory init port receptor.$flatten\seg_disp.$auto$mem.cc:319:emit$306 ($flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304).
+Removed top 1 bits (of 3) from port B of cell receptor.$flatten\cor.$eq$../design/corrector.sv:12$7 ($eq).
 
-4.7.9. Executing PEEPOPT pass (run peephole optimizers).
+6.7.9. Executing PEEPOPT pass (run peephole optimizers).
 
-4.7.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.10. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.7.11. Executing ALUMACC pass (create $alu and $macc cells).
+6.7.11. Executing ALUMACC pass (create $alu and $macc cells).
 Extracting $alu and $macc cells in module receptor:
-  creating $macc model for $flatten\dec.$sub$../design/decodificador.sv:23$31 ($sub).
-  creating $alu model for $macc $flatten\dec.$sub$../design/decodificador.sv:23$31.
-  creating $alu cell for $flatten\dec.$sub$../design/decodificador.sv:23$31: $auto$alumacc.cc:485:replace_alu$365
-  created 1 $alu and 0 $macc cells.
+  created 0 $alu and 0 $macc cells.
 
-4.7.12. Executing SHARE pass (SAT-based resource sharing).
+6.7.12. Executing SHARE pass (SAT-based resource sharing).
 
-4.7.13. Executing OPT pass (performing simple optimizations).
+6.7.13. Executing OPT pass (performing simple optimizations).
 
-4.7.13.1. Executing OPT_EXPR pass (perform const folding).
+6.7.13.1. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.7.13.2. Executing OPT_MERGE pass (detect identical cells).
+6.7.13.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
 Removed a total of 0 cells.
 
-4.7.13.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.7.13.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
 Running muxtree optimizer on module \receptor..
   Creating internal representation of mux trees.
   Evaluating internal representation of mux trees.
@@ -560,131 +582,218 @@ Running muxtree optimizer on module \receptor..
 Removed 0 multiplexer ports.
 <suppressed ~4 debug messages>
 
-4.7.13.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.7.13.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \receptor.
 Performed a total of 0 changes.
 
-4.7.13.5. Executing OPT_MERGE pass (detect identical cells).
+6.7.13.5. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
 Removed a total of 0 cells.
 
-4.7.13.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.7.13.6. Executing OPT_DFF pass (perform DFF optimizations).
 
-4.7.13.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.13.7. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.7.13.8. Executing OPT_EXPR pass (perform const folding).
+6.7.13.8. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.7.13.9. Finished OPT passes. (There is nothing left to do.)
+6.7.13.9. Finished OPT passes. (There is nothing left to do.)
 
-4.7.14. Executing MEMORY pass.
+6.7.14. Executing MEMORY pass.
 
-4.7.14.1. Executing OPT_MEM pass (optimize memories).
+6.7.14.1. Executing OPT_MEM pass (optimize memories).
 Performed a total of 0 transformations.
 
-4.7.14.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
+6.7.14.2. Executing OPT_MEM_PRIORITY pass (removing unnecessary memory write priority relations).
 Performed a total of 0 transformations.
 
-4.7.14.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
+6.7.14.3. Executing OPT_MEM_FEEDBACK pass (finding memory read-to-write feedback paths).
 
-4.7.14.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
+6.7.14.4. Executing MEMORY_BMUX2ROM pass (converting muxes to ROMs).
 
-4.7.14.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+6.7.14.5. Executing MEMORY_DFF pass (merging $dff cells to $memrd).
+Checking read port `$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304'[0] in module `\receptor': no output FF found.
+Checking read port address `$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304'[0] in module `\receptor': no address FF found.
 
-4.7.14.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.14.6. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.7.14.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
+6.7.14.7. Executing MEMORY_SHARE pass (consolidating $memrd/$memwr cells).
 
-4.7.14.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
+6.7.14.8. Executing OPT_MEM_WIDEN pass (optimize memories where all ports are wide).
 Performed a total of 0 transformations.
 
-4.7.14.9. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.14.9. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.7.14.10. Executing MEMORY_COLLECT pass (generating $mem cells).
+6.7.14.10. Executing MEMORY_COLLECT pass (generating $mem cells).
 
-4.7.15. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.7.15. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.8. Executing MEMORY_LIBMAP pass (mapping memories to cells).
+6.8. Executing MEMORY_LIBMAP pass (mapping memories to cells).
+using FF mapping for memory receptor.$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304
+<suppressed ~6 debug messages>
 
-4.9. Executing TECHMAP pass (map to technology primitives).
+6.9. Executing TECHMAP pass (map to technology primitives).
 
-4.9.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/lutrams_map.v
+6.9.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/lutrams_map.v
 Parsing Verilog input from `/home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/lutrams_map.v' to AST representation.
 Generating RTLIL representation for module `\$__GOWIN_LUTRAM_'.
 Successfully finished Verilog frontend.
 
-4.9.2. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/brams_map.v
+6.9.2. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/brams_map.v
 Parsing Verilog input from `/home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/brams_map.v' to AST representation.
 Generating RTLIL representation for module `\$__GOWIN_SP_'.
 Generating RTLIL representation for module `\$__GOWIN_DP_'.
 Generating RTLIL representation for module `\$__GOWIN_SDP_'.
 Successfully finished Verilog frontend.
 
-4.9.3. Continuing TECHMAP pass.
+6.9.3. Continuing TECHMAP pass.
 No more expansions possible.
 <suppressed ~6 debug messages>
 
-4.10. Executing OPT pass (performing simple optimizations).
+6.10. Executing OPT pass (performing simple optimizations).
 
-4.10.1. Executing OPT_EXPR pass (perform const folding).
+6.10.1. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
-<suppressed ~3 debug messages>
+<suppressed ~2 debug messages>
 
-4.10.2. Executing OPT_MERGE pass (detect identical cells).
+6.10.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
 Removed a total of 0 cells.
 
-4.10.3. Executing OPT_DFF pass (perform DFF optimizations).
+6.10.3. Executing OPT_DFF pass (perform DFF optimizations).
 
-4.10.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.10.4. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.10.5. Finished fast OPT passes.
+6.10.5. Finished fast OPT passes.
 
-4.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+6.11. Executing MEMORY_MAP pass (converting memories to logic and flip-flops).
+Mapping memory $flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304 in module \receptor:
+  created 16 $dff cells and 0 static cells of width 7.
+  read interface: 0 $dff and 15 $mux cells.
+  write interface: 0 write mux blocks.
 
-4.12. Executing OPT pass (performing simple optimizations).
+6.12. Executing OPT pass (performing simple optimizations).
 
-4.12.1. Executing OPT_EXPR pass (perform const folding).
+6.12.1. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.12.2. Executing OPT_MERGE pass (detect identical cells).
+6.12.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
 Removed a total of 0 cells.
 
-4.12.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+6.12.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
 Running muxtree optimizer on module \receptor..
   Creating internal representation of mux trees.
   Evaluating internal representation of mux trees.
   Analyzing evaluation results.
 Removed 0 multiplexer ports.
-<suppressed ~4 debug messages>
+<suppressed ~5 debug messages>
 
-4.12.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+6.12.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module \receptor.
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][3][6]$613:
+      Old ports: A=7'1000110, B=7'0100001, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$a$593
+      New ports: A=2'10, B=2'01, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$a$593 [1:0]
+      New connections: $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$a$593 [6:2] = { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$a$593 [1:0] 2'00 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$a$593 [1] }
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][3][5]$610:
+      Old ports: A=7'0001000, B=7'0000011, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$b$591
+      New ports: A=2'10, B=2'01, Y={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$b$591 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$b$591 [0] }
+      New connections: { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$b$591 [6:4] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$b$591 [2:1] } = { 4'0000 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$b$591 [0] }
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][3][4]$607:
+      Old ports: A=7'0000000, B=7'0010000, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$a$590
+      New ports: A=1'0, B=1'1, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$a$590 [4]
+      New connections: { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$a$590 [6:5] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$a$590 [3:0] } = 6'000000
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][3][3]$604:
+      Old ports: A=7'0000010, B=7'1111000, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588
+      New ports: A=2'01, B=2'10, Y={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [1] }
+      New connections: { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [6:4] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [2] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [0] } = { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [3] 2'00 }
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][3][2]$601:
+      Old ports: A=7'0011001, B=7'0010010, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$a$587
+      New ports: A=2'01, B=2'10, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$a$587 [1:0]
+      New connections: $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$a$587 [6:2] = { 3'001 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$a$587 [0] 1'0 }
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][3][1]$598:
+      Old ports: A=7'0100100, B=7'0110000, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$b$585
+      New ports: A=2'01, B=2'10, Y={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$b$585 [4] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$b$585 [2] }
+      New connections: { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$b$585 [6:5] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$b$585 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$b$585 [1:0] } = 5'01000
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][3][0]$595:
+      Old ports: A=7'1000000, B=7'1111001, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584
+      New ports: A=1'0, B=1'1, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584 [0]
+      New connections: $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584 [6:1] = { 1'1 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584 [0] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584 [0] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584 [0] 2'00 }
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][3][7]$616:
+      Old ports: A=7'0000110, B=7'0001110, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$b$594
+      New ports: A=1'0, B=1'1, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$b$594 [3]
+      New connections: { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$b$594 [6:4] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$b$594 [2:0] } = 6'000110
+  Optimizing cells in module \receptor.
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$592:
+      Old ports: A=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$a$593, B=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$b$594, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$b$582
+      New ports: A={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$a$593 [1] 1'0 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$a$593 [1:0] }, B={ 1'0 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][3]$b$594 [3] 2'10 }, Y={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$b$582 [6] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$b$582 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$b$582 [1:0] }
+      New connections: { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$b$582 [5:4] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$b$582 [2] } = { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$b$582 [0] 1'0 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$b$582 [1] }
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$589:
+      Old ports: A=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$a$590, B=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$b$591, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$a$581
+      New ports: A={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$a$590 [4] 2'00 }, B={ 1'0 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$b$591 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][2]$b$591 [0] }, Y={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$a$581 [4:3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$a$581 [0] }
+      New connections: { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$a$581 [6:5] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$a$581 [2:1] } = { 3'000 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][1]$a$581 [0] }
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$586:
+      Old ports: A=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$a$587, B=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$b$579
+      New ports: A={ 2'01 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$a$587 [0] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$a$587 [1:0] }, B={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][1]$b$588 [1] 1'0 }, Y={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$b$579 [5:3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$b$579 [1:0] }
+      New connections: { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$b$579 [6] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$b$579 [2] } = { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$b$579 [5] 1'0 }
+    Consolidated identical input bits for $mux cell $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$583:
+      Old ports: A=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584, B=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$b$585, Y=$memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$a$578
+      New ports: A={ 1'1 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584 [0] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584 [0] 1'0 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$a$584 [0] }, B={ 2'01 $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$b$585 [4] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][2][0]$b$585 [2] 1'0 }, Y={ $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$a$578 [6:4] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$a$578 [2] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$a$578 [0] }
+      New connections: { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$a$578 [3] $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$a$578 [1] } = { $memory$flatten\seg_disp.$auto$proc_rom.cc:150:do_switch$304$rdmux[0][1][0]$a$578 [0] 1'0 }
+  Optimizing cells in module \receptor.
+Performed a total of 12 changes.
+
+6.12.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `\receptor'.
+<suppressed ~15 debug messages>
+Removed a total of 5 cells.
+
+6.12.6. Executing OPT_DFF pass (perform DFF optimizations).
+
+6.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \receptor..
+Removed 0 unused cells and 21 unused wires.
+<suppressed ~1 debug messages>
+
+6.12.8. Executing OPT_EXPR pass (perform const folding).
+Optimizing module receptor.
+
+6.12.9. Rerunning OPT passes. (Maybe there is more to do..)
+
+6.12.10. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module \receptor..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~8 debug messages>
+
+6.12.11. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
   Optimizing cells in module \receptor.
 Performed a total of 0 changes.
 
-4.12.5. Executing OPT_MERGE pass (detect identical cells).
+6.12.12. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
 Removed a total of 0 cells.
 
-4.12.6. Executing OPT_DFF pass (perform DFF optimizations).
+6.12.13. Executing OPT_DFF pass (perform DFF optimizations).
 
-4.12.7. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.12.14. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
 
-4.12.8. Executing OPT_EXPR pass (perform const folding).
+6.12.15. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.12.9. Finished OPT passes. (There is nothing left to do.)
+6.12.16. Finished OPT passes. (There is nothing left to do.)
 
-4.13. Executing TECHMAP pass (map to technology primitives).
+6.13. Executing TECHMAP pass (map to technology primitives).
 
-4.13.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/techmap.v
+6.13.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/techmap.v
 Parsing Verilog input from `/home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/techmap.v' to AST representation.
 Generating RTLIL representation for module `\_90_simplemap_bool_ops'.
 Generating RTLIL representation for module `\_90_simplemap_reduce_ops'.
@@ -712,57 +821,56 @@ Generating RTLIL representation for module `\_90_demux'.
 Generating RTLIL representation for module `\_90_lut'.
 Successfully finished Verilog frontend.
 
-4.13.2. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/arith_map.v
+6.13.2. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/arith_map.v
 Parsing Verilog input from `/home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/arith_map.v' to AST representation.
 Generating RTLIL representation for module `\_80_gw1n_alu'.
 Successfully finished Verilog frontend.
 
-4.13.3. Continuing TECHMAP pass.
-Using extmapper simplemap for cells of type $xor.
-Using template $paramod$b8c0a997bce700f23568a5ada79cc6781d1f5ca0\_80_gw1n_alu for cells of type $alu.
+6.13.3. Continuing TECHMAP pass.
 Using extmapper simplemap for cells of type $mux.
+Using extmapper simplemap for cells of type $xor.
 Using extmapper simplemap for cells of type $not.
 Using extmapper simplemap for cells of type $eq.
-Using extmapper simplemap for cells of type $pos.
 No more expansions possible.
-<suppressed ~120 debug messages>
+<suppressed ~106 debug messages>
 
-4.14. Executing OPT pass (performing simple optimizations).
+6.14. Executing OPT pass (performing simple optimizations).
 
-4.14.1. Executing OPT_EXPR pass (perform const folding).
+6.14.1. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
-<suppressed ~22 debug messages>
+<suppressed ~20 debug messages>
 
-4.14.2. Executing OPT_MERGE pass (detect identical cells).
+6.14.2. Executing OPT_MERGE pass (detect identical cells).
 Finding identical cells in module `\receptor'.
-<suppressed ~12 debug messages>
-Removed a total of 4 cells.
+<suppressed ~48 debug messages>
+Removed a total of 16 cells.
 
-4.14.3. Executing OPT_DFF pass (perform DFF optimizations).
+6.14.3. Executing OPT_DFF pass (perform DFF optimizations).
 
-4.14.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.14.4. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
-Removed 5 unused cells and 34 unused wires.
-<suppressed ~6 debug messages>
+Removed 4 unused cells and 23 unused wires.
+<suppressed ~5 debug messages>
 
-4.14.5. Finished fast OPT passes.
+6.14.5. Finished fast OPT passes.
 
-4.15. Executing IOPADMAP pass (mapping inputs/outputs to IO-PAD cells).
-Mapping port receptor.data using OBUF.
+6.15. Executing IOPADMAP pass (mapping inputs/outputs to IO-PAD cells).
 Mapping port receptor.err using OBUF.
 Mapping port receptor.in using IBUF.
-Mapping port receptor.raw using OBUF.
+Mapping port receptor.led using OBUF.
+Mapping port receptor.palabra using OBUF.
+Mapping port receptor.seg7 using OBUF.
 
-4.16. Executing OPT_CLEAN pass (remove unused cells and wires).
+6.16. Executing OPT_CLEAN pass (remove unused cells and wires).
 Finding unused cells or wires in module \receptor..
-Removed 0 unused cells and 4 unused wires.
+Removed 0 unused cells and 5 unused wires.
 <suppressed ~1 debug messages>
 
-4.17. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
+6.17. Executing DFFLEGALIZE pass (convert FFs to types supported by the target).
 
-4.18. Executing TECHMAP pass (map to technology primitives).
+6.18. Executing TECHMAP pass (map to technology primitives).
 
-4.18.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_map.v
+6.18.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_map.v
 Parsing Verilog input from `/home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_map.v' to AST representation.
 Generating RTLIL representation for module `\$_DFF_N_'.
 Generating RTLIL representation for module `\$_DFF_P_'.
@@ -787,21 +895,21 @@ Generating RTLIL representation for module `\$_DFFE_NP0P_'.
 Generating RTLIL representation for module `\$lut'.
 Successfully finished Verilog frontend.
 
-4.18.2. Continuing TECHMAP pass.
+6.18.2. Continuing TECHMAP pass.
 No more expansions possible.
 <suppressed ~23 debug messages>
 
-4.19. Executing OPT_EXPR pass (perform const folding).
+6.19. Executing OPT_EXPR pass (perform const folding).
 Optimizing module receptor.
 
-4.20. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+6.20. Executing SIMPLEMAP pass (map simple cells to gate primitives).
 
-4.21. Executing ABC pass (technology mapping using ABC).
+6.21. Executing ABC pass (technology mapping using ABC).
 
-4.21.1. Extracting gate netlist of module `\receptor' to `<abc-temp-dir>/input.blif'..
-Extracted 27 gates and 37 wires to a netlist network with 10 inputs and 7 outputs.
+6.21.1. Extracting gate netlist of module `\receptor' to `<abc-temp-dir>/input.blif'..
+Extracted 68 gates and 77 wires to a netlist network with 7 inputs and 18 outputs.
 
-4.21.1.1. Executing ABC.
+6.21.1.1. Executing ABC.
 Running ABC command: "<yosys-exe-dir>/yosys-abc" -s -f <abc-temp-dir>/abc.script 2>&1
 ABC: ABC command line: "source <abc-temp-dir>/abc.script".
 ABC: 
@@ -821,17 +929,17 @@ ABC: + if
 ABC: + mfs2 
 ABC: + write_blif <abc-temp-dir>/output.blif 
 
-4.21.1.2. Re-integrating ABC results.
-ABC RESULTS:              $lut cells:        7
-ABC RESULTS:        internal signals:       20
-ABC RESULTS:           input signals:       10
-ABC RESULTS:          output signals:        7
+6.21.1.2. Re-integrating ABC results.
+ABC RESULTS:              $lut cells:       18
+ABC RESULTS:        internal signals:       52
+ABC RESULTS:           input signals:        7
+ABC RESULTS:          output signals:       18
 Removing temp directory.
-Removed 0 unused cells and 37 unused wires.
+Removed 0 unused cells and 51 unused wires.
 
-4.22. Executing TECHMAP pass (map to technology primitives).
+6.22. Executing TECHMAP pass (map to technology primitives).
 
-4.22.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_map.v
+6.22.1. Executing Verilog-2005 frontend: /home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_map.v
 Parsing Verilog input from `/home/julian/Documents/TEC/Diseño_Lógico/oss-cad-suite-linux-x64-20230210/oss-cad-suite/lib/../share/yosys/gowin/cells_map.v' to AST representation.
 Generating RTLIL representation for module `\$_DFF_N_'.
 Generating RTLIL representation for module `\$_DFF_P_'.
@@ -856,59 +964,249 @@ Generating RTLIL representation for module `\$_DFFE_NP0P_'.
 Generating RTLIL representation for module `\$lut'.
 Successfully finished Verilog frontend.
 
-4.22.2. Continuing TECHMAP pass.
-Using template $paramod$bff35d97b07dddb273c72678bf847e2b78003681\$lut for cells of type $lut.
+6.22.2. Continuing TECHMAP pass.
+Using template $paramod$41fc2de76bb11aa9bdbc0da461d53d6111752d10\$lut for cells of type $lut.
+Using template $paramod$7893e881e8c10fb996a3172baa399dbc2fcbdf99\$lut for cells of type $lut.
+Using template $paramod$7de8975f460f7e9d7b333b79aa352c7502591ec7\$lut for cells of type $lut.
+Using template $paramod$4408441430b3a8ca70305e841ba8f0c550e6d459\$lut for cells of type $lut.
+Using template $paramod$e683a237004c36f0659fe4da68b5423ac0d5b820\$lut for cells of type $lut.
+Using template $paramod$024a818fa07c8c1102c3f24fb2c2912352a17366\$lut for cells of type $lut.
+Using template $paramod$2338b21c3a8e324755f0729b8d124a0c34eddc68\$lut for cells of type $lut.
+Using template $paramod$edfce173f0e9b4831aec60ad7053ac886b950eaa\$lut for cells of type $lut.
+Using template $paramod$50a3c7318525be40dc318fdba625fb5d8a66f2d3\$lut for cells of type $lut.
+Using template $paramod$0ec44b1542b6e2954127e5da04cc18e782dbd695\$lut for cells of type $lut.
+Using template $paramod$fe7c00ba25bab59ad13024eb66c6f989ab69247f\$lut for cells of type $lut.
+Using template $paramod$4db5692a83f6a12507ab56823648ec641e7fe20c\$lut for cells of type $lut.
 Using template $paramod$fd904e9e35cfd343a9df248824bd3f1408724879\$lut for cells of type $lut.
-Using template $paramod$ef6f9494c41321ef63579b1462fd44bdf781fd1c\$lut for cells of type $lut.
+Using template $paramod$6c9ca8d9b02568d6825a10459fe79305ff33c493\$lut for cells of type $lut.
+Using template $paramod$d7ce224894cee550cbd421f586027e0f7ac20fef\$lut for cells of type $lut.
+Using template $paramod$3f9336606800bf9274ca697e53896572746cba88\$lut for cells of type $lut.
+Using template $paramod$a985b7f324fe54dcdbe1fc2a63f12e4a9df20a68\$lut for cells of type $lut.
+Using template $paramod$cfd9a91015f6caf5b76b3b61c4eab776a7c9cac6\$lut for cells of type $lut.
+Using template $paramod$2ab511ccb1a4e90a91f18f39f115f6006e269695\$lut for cells of type $lut.
+Using template $paramod$f6bc7a25d68b40f0c38eefb09853d002f3fb6605\$lut for cells of type $lut.
+Using template $paramod$486bcad9cd49015f6d00f1850adc08ba516a11d1\$lut for cells of type $lut.
+Using template $paramod$6b21511a890df378fa7d42d49572c095d3361611\$lut for cells of type $lut.
+Using template $paramod$6908114b93fde4ebf4f6724eb6ce24e9dcf0f5e8\$lut for cells of type $lut.
+Using template $paramod$76c68e397688ba8210994bb1d48ef505d17a9e3f\$lut for cells of type $lut.
+Using template $paramod$1489734c06e5ab02f00d5e1a8c5dab292729c490\$lut for cells of type $lut.
+Using template $paramod$b4ca58fde1830dbba66a084ffa1d6933e0c086ea\$lut for cells of type $lut.
+Using template $paramod$b783c7bc30c9e72d45c4107d60855935014aca1b\$lut for cells of type $lut.
+Using template $paramod$b17e39c3747e936e8250a67587590ef566602625\$lut for cells of type $lut.
+Using template $paramod$059bd3b37714a2a7e7645f4bef72b63dc8d649e3\$lut for cells of type $lut.
+Using template $paramod$9c71e79d2e70b042fc4fda185a9ba9783cff236c\$lut for cells of type $lut.
+Using template $paramod$b51da23e9845c0eeee5d9f834d8401af0e88c2ee\$lut for cells of type $lut.
+Using template $paramod$277be64f48fb7687e1590df6b247374ed3d470cb\$lut for cells of type $lut.
+Using template $paramod$ccbc068aa8b0b8d2e802ffcd1ba611bffd05a711\$lut for cells of type $lut.
+Using template $paramod$01d49d06fa39b234cc802656b4912b3dfb46a1f5\$lut for cells of type $lut.
+Using template $paramod$b91ae8cb1a35d15433af4b3482df06885889e45c\$lut for cells of type $lut.
+Using template $paramod$265e427f48b5b61a7dab20bfdd049c086ba99559\$lut for cells of type $lut.
+Using template $paramod$26dfa922e07b4d847218a7678a96694e91ee007c\$lut for cells of type $lut.
+Using template $paramod$17b5c2ab1e2e76eded0e15ff36ff799fa26f7db1\$lut for cells of type $lut.
+Using template $paramod$ee7cc2ee9afb230db45d84d9cf2ff1dbbd856624\$lut for cells of type $lut.
+Using template $paramod$9f8646993fd934142cbbea88ba003d351b010402\$lut for cells of type $lut.
+Using template $paramod$fb0e45dcf1ea2eb075e9c6c5b53bd2017d08ede2\$lut for cells of type $lut.
+Using template $paramod$ec58f805ffc2c173cfa3498cc0defc1080968e74\$lut for cells of type $lut.
+Using template $paramod$4ecda2c0629ebb0b27c3eeeea3d050cdbc8396a7\$lut for cells of type $lut.
+Using template $paramod$ec63646c10cd8018ea4008dd111e023a55199f89\$lut for cells of type $lut.
+Using template $paramod$4ef19fe9b632e2e6c2b2cb545856ec64e0a394c0\$lut for cells of type $lut.
+Using template $paramod$c599840a5b172c41286f9ec69462121c7c87c4b1\$lut for cells of type $lut.
+Using template $paramod$a3498a324d7d7dd696cbff969300ba18757e86b2\$lut for cells of type $lut.
+Using template $paramod$404b2e7efad0f51cc366e1db04cca3dcabc9f7f4\$lut for cells of type $lut.
+Using template $paramod$23ad6a13904739df577f54534ec521d18b299bf6\$lut for cells of type $lut.
+Using template $paramod$de785c4888ee0357da4bba3d4a2bd06cd21d489b\$lut for cells of type $lut.
+Using template $paramod$3ff6ceacdb8367bb81889c3de9bd8e2a2c86c5a6\$lut for cells of type $lut.
+Using template $paramod$e82290536f8ed6866f8e2d3f0c610ab301e69501\$lut for cells of type $lut.
+Using template $paramod$11dabcd3c0b96904e83b78c3ee7d55b91a417df0\$lut for cells of type $lut.
+Using template $paramod$4fca3d5b5148dad119c1d5da1a989858b8795755\$lut for cells of type $lut.
+Using template $paramod$f54c1e588301836bfc13de504d1ea9a65f83e106\$lut for cells of type $lut.
+Using template $paramod$ad48905ced31f39349c92fca11c2711d8542394c\$lut for cells of type $lut.
+Using template $paramod$1978cd7a879f7a26f19feeef9b1c66663ae640b4\$lut for cells of type $lut.
+Using template $paramod$4ad66bf45d9267a31fb867bcd88707f4b6fc8b8f\$lut for cells of type $lut.
+Using template $paramod$98ce327a4d9241d0525f6383fa100af4d0b576a3\$lut for cells of type $lut.
+Using template $paramod$d79deebb62d0988660e3501165d27b81f0fdecf7\$lut for cells of type $lut.
+Using template $paramod$7d5845b51b527a174c3534d1e6bd6c2bf52b89ee\$lut for cells of type $lut.
+Using template $paramod$86dda8f4883811aa6e63882a2adbb3775926e54c\$lut for cells of type $lut.
+Using template $paramod$eeec44f40e8ea3c523e8c8fd1e0c9541073064f4\$lut for cells of type $lut.
+Using template $paramod$95b97f2b0db4796cfdff409983d9b11d21185fda\$lut for cells of type $lut.
+Using template $paramod$f834b3af4933353c8ec11e7408d8b3a295a2386f\$lut for cells of type $lut.
+Using template $paramod$32c17a170dcf2fddf06925b52d96bde4490ff0d9\$lut for cells of type $lut.
+Using template $paramod$3c67eb29df68eb397f397f150279748fd56f5f81\$lut for cells of type $lut.
+Using template $paramod$df2a183388b4d9c2ed35c5ba0fea634d5b9f6bb3\$lut for cells of type $lut.
+Using template $paramod$9a437a7874207588dc55ebc6c11f6c73ae7ad7ac\$lut for cells of type $lut.
+Using template $paramod$9f932bcd7f4d1000c53006d7ecae6bc622ce9191\$lut for cells of type $lut.
+Using template $paramod$902d1aa8061f33a45ca38b0e61151f655d4977dc\$lut for cells of type $lut.
+Using template $paramod$5148271b9c99a8bf4c407d228d492ae402c5bdea\$lut for cells of type $lut.
+Using template $paramod$a9d70a5c588145905cf597c7778806de944823ea\$lut for cells of type $lut.
+Using template $paramod$99a82b9cb701e8d1d1a88d99727903c395e7a709\$lut for cells of type $lut.
+Using template $paramod$72f5c8ffb50b84b61759c6ff3427f73cc9785bdb\$lut for cells of type $lut.
+Using template $paramod$2d7e1358211d2e5600e53deb52a4411df095df75\$lut for cells of type $lut.
+Using template $paramod$bb0eb76d6266050462571881c28ac43174004aad\$lut for cells of type $lut.
+Using template $paramod$5d84dadd87b9c08c74767966dfe53c96abef9d19\$lut for cells of type $lut.
+Using template $paramod$0c4487e0b7290092c0ec23ffcd2aae199c0a5e1e\$lut for cells of type $lut.
+Using template $paramod$aa7cb364224b4e389dd290135d41c729c59a0287\$lut for cells of type $lut.
+Using template $paramod$f2fc64e86e8b0ccf660d6289ea4186eb126497a7\$lut for cells of type $lut.
+Using template $paramod$b9bb5798034fa138ffbd239413ed9417a69cc9de\$lut for cells of type $lut.
+Using template $paramod$69e6a03ad3a53c1a4cc93f697613929cacca3145\$lut for cells of type $lut.
+Using template $paramod$fe40dd3e882d8e9afbc3428caaee11f50159a584\$lut for cells of type $lut.
+Using template $paramod$f53144277f369b104316af5aeabc50883fd71932\$lut for cells of type $lut.
+Using template $paramod$91ba222d434ed53dc828218ae4d42eb7df0f64c4\$lut for cells of type $lut.
+Using template $paramod$01f503d8fa7a68da815779ab16a88f0ff86f25e3\$lut for cells of type $lut.
+Using template $paramod$f26cc98cedce853adab957a3f7ccf54d0a9efcd5\$lut for cells of type $lut.
+Using template $paramod$f5687e00827d15d10560cc4402c6c728b735dc8b\$lut for cells of type $lut.
+Using template $paramod$57a57ffd791987dd84b6355ed72fb8a3f465418a\$lut for cells of type $lut.
+Using template $paramod$e82c609ba60892901df086be82d1dac86ca8b81f\$lut for cells of type $lut.
+Using template $paramod$b21d17c0540aa8e30cb89a0b6f2eeffea6e38fac\$lut for cells of type $lut.
+Using template $paramod$233065c234b41f824e3d19191dfe771a2b82ad51\$lut for cells of type $lut.
+Using template $paramod$07df77a4435dcacc5932d83f34774b1392854431\$lut for cells of type $lut.
+Using template $paramod$b80433a060a4d234c62511b181bb803f9dc9327b\$lut for cells of type $lut.
+Using template $paramod$5821edb06ae1e78c828b42738d73e7ca723a9d43\$lut for cells of type $lut.
+Using template $paramod$196b3f201749f47aa8b94b30e1f4af9bb6f1fa1a\$lut for cells of type $lut.
+Using template $paramod$b2713f25706cca734244f5a1cf49a31dd9ad1c89\$lut for cells of type $lut.
+Using template $paramod$b54437c474c00539c512f939b004f3f484bd36f8\$lut for cells of type $lut.
+Using template $paramod$9e95e7dcc25340320abe8b98db80874f0c135391\$lut for cells of type $lut.
+Using template $paramod$744433969c63bd51b2580fdef79476330c6205ec\$lut for cells of type $lut.
+Using template $paramod$d8fea6125e9b040b3a2961ef4672eb261ce6d635\$lut for cells of type $lut.
+Using template $paramod$ba8e80a90445cb65f23c12350a3db96ad99fa5ff\$lut for cells of type $lut.
+Using template $paramod$f3920630f8166af5b71899e0e88ce13fb07dcef4\$lut for cells of type $lut.
+Using template $paramod$ef28549de2963a1e4586c4592128dc661adc6eb3\$lut for cells of type $lut.
+Using template $paramod$0c5b6d67b9deea825159f0c3ed3f98334d939319\$lut for cells of type $lut.
+Using template $paramod$48ff51ecc9ba865891e818f5e8f9074105f3b668\$lut for cells of type $lut.
+Using template $paramod$39c0466fa3f55ae820aafadf59fed24bd0c60a40\$lut for cells of type $lut.
+Using template $paramod$d60db35288f4a0a8cfb61d27f47807bdaa7c5d93\$lut for cells of type $lut.
+Using template $paramod$00bd67ac799b9bf0ebf1c27b20d1aef65e9e1b74\$lut for cells of type $lut.
+Using template $paramod$682fb525e28526aa2b14d0a7620dca8eb11c5730\$lut for cells of type $lut.
+Using template $paramod$136b0e146b26048d5f9aaef8cc1573321b330851\$lut for cells of type $lut.
+Using template $paramod$985a4e77f7680923aad311f7ea39573ccf9731e7\$lut for cells of type $lut.
+Using template $paramod$2babead628ba52b43fd0f3e6f984194a96e47cf7\$lut for cells of type $lut.
+Using template $paramod$8712cf3ee7bdf75424a4163815091aefc631bbaa\$lut for cells of type $lut.
+Using template $paramod$33ea93526ff453d08725de16526dbcb12a550312\$lut for cells of type $lut.
+Using template $paramod$4fb2ec0a5a3e3c6632112a53e41664ed8071b531\$lut for cells of type $lut.
+Using template $paramod$da945cdf8b3678c576d1c833acbdfeca7835e8d4\$lut for cells of type $lut.
+Using template $paramod$543d865129f1766232b6a3dcd003b926ec5de5d3\$lut for cells of type $lut.
+Using template $paramod$227f599e1ac73bca736b2d83c9ae00e556de8ec6\$lut for cells of type $lut.
+Using template $paramod$843f494e2a9308d7cb1a725c8865c6de0fc2cd36\$lut for cells of type $lut.
+Using template $paramod$aecf36d9b934c8e370c86610c9b2c4efebe3c963\$lut for cells of type $lut.
+Using template $paramod$0cffb2ce5b5331ebf7ea775beac403d412aebad8\$lut for cells of type $lut.
+Using template $paramod$84a343674b83eca1f4282932384e71075d784dd0\$lut for cells of type $lut.
+Using template $paramod$81218f53ab481f479b5fc212c675210dfee5b596\$lut for cells of type $lut.
+Using template $paramod$f13835b8fb0e1ac6a358482572b2a0ab88d62930\$lut for cells of type $lut.
+Using template $paramod$ca20f6399a2f869626866d62beb08549fb5b5638\$lut for cells of type $lut.
+Using template $paramod$3fef4c624e739b718ae68062895cbb4ea4c0158a\$lut for cells of type $lut.
+Using template $paramod$951fc3169567912a3e0303520d5c9718422777c1\$lut for cells of type $lut.
+Using template $paramod$95d36dc87025f01cb3ffd2b864f0eb98b9d3a05e\$lut for cells of type $lut.
+Using template $paramod$8db64b3a6bc45d9e7bc738d864075f604b1e3bd8\$lut for cells of type $lut.
+Using template $paramod$7fc0fbe53413af4c1840e27f1599fc1b165dc301\$lut for cells of type $lut.
+Using template $paramod$aca4d810e97411c42eb1b86d77aec607c9b17b19\$lut for cells of type $lut.
+Using template $paramod$4a0c2c2e2691d2d32be52234fc20ff2e049c59ea\$lut for cells of type $lut.
+Using template $paramod$d790b7b7c7b6ba19c2e02cb1adb2ec760279576f\$lut for cells of type $lut.
+Using template $paramod$fdf1d1874c6ad3c865e72fd59983bf0fb8d5bd76\$lut for cells of type $lut.
+Using template $paramod$3545bd2a91cfb9a489a00307417ec51a92ea2689\$lut for cells of type $lut.
+Using template $paramod$9b8e7093ad99f1cd8eaca28483488cc5aa13af78\$lut for cells of type $lut.
+Using template $paramod$f6b0e450fe686869f7d2b14a818e978559a80756\$lut for cells of type $lut.
+Using template $paramod$a0cf25a462775f827a095ab1cfae41bffe2a7b04\$lut for cells of type $lut.
+Using template $paramod$453c3565643cf30e23c06a107c2d4098dc4a75d4\$lut for cells of type $lut.
+Using template $paramod$fe2f90a95b51f03cba161a54c5f553e2d5d95e3b\$lut for cells of type $lut.
+Using template $paramod$e49a247717e1211dfba10cb66939446627399fc7\$lut for cells of type $lut.
+Using template $paramod$8d9bcbb69d0d134082d3687afb3260b88ec4d76c\$lut for cells of type $lut.
+Using template $paramod$341b7c8c5b24ba8b3e2faa2e921ab17e3e88ffee\$lut for cells of type $lut.
+Using template $paramod$dd6bdcf78fb744d41870a8d6214b8ff52c798b5f\$lut for cells of type $lut.
+Using template $paramod$61bc98ece8c76bffd4acdf40e5f231340cba90fc\$lut for cells of type $lut.
+Using template $paramod$0f6baf8aa97ae5d13c73fbcd35bb35810558de2b\$lut for cells of type $lut.
+Using template $paramod$4a485e1b0f6f71824d602b9513008fc093fd78ca\$lut for cells of type $lut.
+Using template $paramod$a16b0ad9901919a39d131b5282548eeb4f605cef\$lut for cells of type $lut.
+Using template $paramod$fd443a109cefb741b553619d5bc3d000d547d97b\$lut for cells of type $lut.
+Using template $paramod$6af02d40bacf9bf712313925c062b40bacfedcc3\$lut for cells of type $lut.
+Using template $paramod$4a7982abf1d87dc2cecf7eed2f30a2fa6a897bb7\$lut for cells of type $lut.
+Using template $paramod$8f6bec787a3337fac89493b032dcc42ab6787b76\$lut for cells of type $lut.
+Using template $paramod$52512c8d4014892951d04c4e1d4a5c48ad035474\$lut for cells of type $lut.
+Using template $paramod$9d0c9e330c03d044584e8181b708e65afa383407\$lut for cells of type $lut.
+Using template $paramod$2ce7a444788fe67154d4bd4db4ee5fbd74205aca\$lut for cells of type $lut.
+Using template $paramod$7b15e763329e350ca3d82441dc038712d43141b6\$lut for cells of type $lut.
+Using template $paramod$277cb1715e7f5a102b665ad146c3fca74e463b41\$lut for cells of type $lut.
+Using template $paramod$b63d90b927a619713e173d0bf9318a459fa2e52c\$lut for cells of type $lut.
+Using template $paramod$47cbd42581f6e65bb729c4a7f23172baa12a4e44\$lut for cells of type $lut.
+Using template $paramod$343cecf3576e43776af124d03c1a8713e7b3187d\$lut for cells of type $lut.
+Using template $paramod$4ffc9c1b861b4422389f7152c45020a8aff79770\$lut for cells of type $lut.
+Using template $paramod$6ce42cde70e31d56c9c58d76bc00afe9a9d13c33\$lut for cells of type $lut.
+Using template $paramod$cf357d63aec7078f12a925b5474dfd267401026d\$lut for cells of type $lut.
+Using template $paramod$8e937cd25eeaaaae32420febbc758f33093ad33c\$lut for cells of type $lut.
+Using template $paramod$fd58714c1131093b7f02595f5143fb4656adce69\$lut for cells of type $lut.
+Using template $paramod$2164d0c4214b254c60336734a31e288a94a088c8\$lut for cells of type $lut.
+Using template $paramod$f11f5c523959a96b9e04039f714a1d57fb427f14\$lut for cells of type $lut.
+Using template $paramod$cc1875f6468690fc614e5e360501a7f1bcef23e2\$lut for cells of type $lut.
+Using template $paramod$9361a64135af45ecd8f51eb4cfdaa450c5cbef6d\$lut for cells of type $lut.
+Using template $paramod$e6197a5e543ebf944598378b59598d3f9f1b57f8\$lut for cells of type $lut.
+Using template $paramod$c6529463e1f83a5679f24f38f745dd95e9b4635b\$lut for cells of type $lut.
+Using template $paramod$eaa743d8e2b6fd765a367e3488934bb07f911954\$lut for cells of type $lut.
+Using template $paramod$4b1a5e176997e89f5265cc43afc8231387bb78fa\$lut for cells of type $lut.
+Using template $paramod$ebf969b5c7b773c149b1e5744bea7399b6814e30\$lut for cells of type $lut.
+Using template $paramod$36b517363f24d86d83e2dea4a880c02ecd8734cf\$lut for cells of type $lut.
+Using template $paramod$c48405847afcf6ed6db8f50ee52429c3827b499d\$lut for cells of type $lut.
+Using template $paramod$898ba7e4517d509e4b51bfae098e888bbb85e003\$lut for cells of type $lut.
 No more expansions possible.
-<suppressed ~69 debug messages>
+<suppressed ~2578 debug messages>
 
-4.23. Executing OPT_LUT_INS pass (discard unused LUT inputs).
+6.23. Executing OPT_LUT_INS pass (discard unused LUT inputs).
 Optimizing LUTs in receptor.
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$851.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0 (4 -> 3)
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$849.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.lut0 (4 -> 3)
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$853.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0 (4 -> 0)
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$850.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0 (4 -> 0)
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$852.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.lut0 (4 -> 3)
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$850.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.lut0 (4 -> 3)
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$849.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.lut0 (4 -> 3)
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$848.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0 (4 -> 3)
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$848.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.lut0 (4 -> 3)
+  Optimizing lut $abc$839$auto$blifparse.cc:525:parse_blif$849.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.genblk1.lut0.genblk1.genblk1.genblk1.genblk1.genblk1.lut1 (4 -> 0)
 
-4.24. Executing SETUNDEF pass (replace undef values with defined constants).
+6.24. Executing SETUNDEF pass (replace undef values with defined constants).
 
-4.25. Executing HILOMAP pass (mapping to constant drivers).
-Removed 0 unused cells and 16 unused wires.
+6.25. Executing HILOMAP pass (mapping to constant drivers).
+Removed 0 unused cells and 457 unused wires.
 
-4.26. Executing AUTONAME pass.
-Renamed 35 objects in module receptor (4 iterations).
-<suppressed ~35 debug messages>
+6.26. Executing AUTONAME pass.
+Renamed 1901 objects in module receptor (10 iterations).
+<suppressed ~464 debug messages>
 
-4.27. Executing HIERARCHY pass (managing design hierarchy).
+6.27. Executing HIERARCHY pass (managing design hierarchy).
 
-4.27.1. Analyzing design hierarchy..
+6.27.1. Analyzing design hierarchy..
 Top module:  \receptor
 
-4.27.2. Analyzing design hierarchy..
+6.27.2. Analyzing design hierarchy..
 Top module:  \receptor
 Removed 0 unused modules.
 
-4.28. Printing statistics.
+6.28. Printing statistics.
 
 === receptor ===
 
-   Number of wires:                 19
-   Number of wire bits:             77
-   Number of public wires:          19
-   Number of public wire bits:      77
+   Number of wires:                227
+   Number of wire bits:            292
+   Number of public wires:         227
+   Number of public wire bits:     292
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:                 33
-     ALU                             3
+   Number of cells:                254
      GND                             1
      IBUF                            7
-     LUT4                            7
-     OBUF                           14
-     VCC                             1
+     LUT1                            3
+     LUT3                            7
+     LUT4                          113
+     MUX2_LUT5                      60
+     MUX2_LUT6                      30
+     MUX2_LUT7                      15
+     OBUF                           18
 
-4.29. Executing CHECK pass (checking for obvious problems).
+6.29. Executing CHECK pass (checking for obvious problems).
 Checking module receptor...
 Found and reported 0 problems.
 
-4.30. Executing JSON backend.
+6.30. Executing JSON backend.
 
-End of script. Logfile hash: 72736fab11, CPU: user 0.26s system 0.02s, MEM: 23.07 MB peak
+Warnings: 1 unique messages, 1 total
+End of script. Logfile hash: bf6e5ecf8d, CPU: user 0.37s system 0.03s, MEM: 53.31 MB peak
 Yosys 0.26+1 (git sha1 b1a011138, clang 10.0.0-4ubuntu1 -fPIC -Os)
-Time spent: 41% 12x read_verilog (0 sec), 20% 1x abc (0 sec), ...
+Time spent: 31% 4x techmap (0 sec), 22% 1x abc (0 sec), ...
