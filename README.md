@@ -90,7 +90,7 @@ endmodule
 
 
 ## Consumo de recursos
-![Descripción](imagenes/Consumo.jpeg)
+![Consumo de recursos](Imágenes/Consumo.jpeg)
 
 **Topic sentence:** [State second supporting point]
 
