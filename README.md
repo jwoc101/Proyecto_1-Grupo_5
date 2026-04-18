@@ -261,7 +261,7 @@ En tecnologías CMOS típicas, el retardo promedio por inversor suele aproximars
 
 <div align="center">
 
-![Imagen 1](Imagen1)
+![alt text](./Imagenes/5.jpg)
 
 </div>
 
@@ -291,7 +291,7 @@ $$\text{Porcentaje Error} = 1.124 $$
 
 <div align="center">
 
-![Imagen 2](Imagen2)
+![alt text](./Imagenes/3.png)
 
 </div>
 
@@ -321,7 +321,7 @@ Esto indica que los inversores están trabajando un poco más rápido de lo espe
 
 <div align="center">
 
-![Imagen 3](Imagen3)
+![alt text](./Imagenes/3_cable.png)
 
 </div>
 
@@ -338,7 +338,7 @@ Además, la resistencia del conductor también influye, limitando la corriente e
 
 <div align="center">
 
-![Imagen 4](Imagen4)
+![alt text](./Imagenes/1.png)
 
 </div>
 
