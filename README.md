@@ -221,6 +221,132 @@ En cuanto al código, las partes más complicadas fueron el corrector de errores
 
 Por otro lado, los displays de siete segmentos también resultaron difíciles, ya que costó entender cómo enviar las señales correctas para encender los LEDs adecuados en cada uno.
 
+
+#
+# Oscilador de anillo  
+Un oscilador de anillo está formado por varios inversores conectados en serie, donde la salida del último se retroalimenta a la entrada del primero. Esta configuración permite generar una señal oscilante de manera continua. La frecuencia de dicha oscilación depende tanto de la cantidad de inversores como de sus características.
+
+Para un oscilador con $N$ inversores, donde cada uno tiene un retardo promedio $t_p$, el periodo se define como:
+
+$$T = 2 \times N \times t_p$$
+
+Donde:
+- $T$ es el periodo  
+- $N$ es el número de inversores  
+- $t_p$ es el retardo de cada inversor  
+
+Esto ocurre porque la señal debe recorrer toda la cadena dos veces para completar un ciclo: una transición de bajo a alto y otra de alto a bajo.
+
+Si lo que se quiere es la frecuencia, se utiliza:
+
+$$f = \frac{1}{2 \times N \times t_p}$$
+
+Donde:
+- $f$ es la frecuencia en Hz  
+- $N$ es el número de inversores  
+- $t_p$ es el retardo por inversor  
+
+En tecnologías CMOS típicas, el retardo promedio por inversor suele aproximarse a 8 ns [2]. Con este valor se pueden estimar las frecuencias teóricas:
+
+<div align="center">
+
+| Número de Inversores (N) | Frecuencia (f) |
+|:------------------------:|:--------------:|
+| 3 | 20,83 MHz |
+| 5 | 12,5 MHz |
+
+</div>
+
+## Resultados para un Oscilador de 5 Inversores
+
+<div align="center">
+
+![Imagen 1](Imagen1)
+
+</div>
+
+Para el caso de 5 inversores, la frecuencia obtenida experimentalmente fue de 12,35 MHz. Al compararla con la teórica, se calcula el error:
+
+$$\text{Porcentaje Error} = \left|\frac{12.35 \text{ MHz} - 12.5 \text{ MHz}}{12.5 \text{ MHz}}\right| \times 100\% $$
+
+$$\text{Porcentaje Error} = 1.2 $$
+
+Este valor muestra que los resultados experimentales son bastante cercanos a lo esperado.
+
+Con esta frecuencia también se puede calcular el retardo real:
+
+$$t_p = \frac{1}{2 \times N \times f}$$ 
+
+$$t_p = \frac{1}{2 \times 5 \times 12.35\text{ MHz}}= 8.09\text{ ns} $$
+
+Porcentaje de error:
+
+$$\text{Porcentaje Error} = \left|\frac{8.09 \text{ns} - 8 \text{ ns}}{8 \text{ ns}}\right| \times 100\%$$
+
+$$\text{Porcentaje Error} = 1.124 $$
+
+
+
+## Resultados para un Oscilador de 3 Inversores
+
+<div align="center">
+
+![Imagen 2](Imagen2)
+
+</div>
+
+Para el oscilador con 3 inversores, la frecuencia medida fue de 22,47 MHz. Comparando con la teórica:
+
+$$\text{Porcentaje Error} = \left|\frac{22.47\text{ MHz} - 20.83 \text{ MHz}}{20.83 \text{ MHz}}\right| \times 100$$
+
+$$\text{Porcentaje Error} = 7.87 $$
+
+Este error es aceptable y puede deberse a variaciones normales del circuito.
+
+El retardo promedio real se calcula como:
+
+$$t_p = \frac{1}{2 \times 3 \times 22.48\text{ MHz}} = 7.16\text{ns} $$
+
+Porcentaje de error:
+
+$$\text{Porcentaje Error} = \left|\frac{7.16 \text{ns} - 8 \text{ ns}}{8 \text{ns}}\right| \times 100\%$$
+
+$$\text{Porcentaje Error} = 10.5 $$
+
+Esto indica que los inversores están trabajando un poco más rápido de lo esperado, posiblemente por condiciones reales del circuito.
+
+
+
+### Cable de 1 Metro
+
+<div align="center">
+
+![Imagen 3](Imagen3)
+
+</div>
+
+Al agregar un cable de 1 metro, el comportamiento del circuito cambia. El nuevo retardo es:
+
+$$t_p = \frac{1}{2 \times 3 \times 19.79\text{ MHz}} = 8.42\text{ns} $$
+
+El aumento en el retardo se debe a efectos parásitos como capacitancia e inductancia del cable, que hacen que la señal tarde más en propagarse.
+
+Además, la resistencia del conductor también influye, limitando la corriente en las transiciones. Esto provoca una disminución en la frecuencia de oscilación y demuestra cómo elementos externos pueden afectar el rendimiento del circuito.
+
+
+## Resultados para un Oscilador de 1 Inversor
+
+<div align="center">
+
+![Imagen 4](Imagen4)
+
+</div>
+
+En el caso de usar solo un inversor, el circuito no logra oscilar correctamente. Esto sucede porque la entrada y salida están conectadas al mismo nodo, lo que impide cambios adecuados en la señal.
+
+Como resultado, el circuito queda en un estado intermedio (aproximadamente 1V), conocido como estado metaestable, donde no se define claramente un 0 o un 1 lógico. Esto demuestra que se necesita al menos un número impar de inversores mayor a uno para que el oscilador funcione correctamente.
+
+#
 ## Conclusion
 
 - Restate thesis (in different words)
@@ -229,7 +355,8 @@ Por otro lado, los displays de siete segmentos también resultaron difíciles, y
 
 ---
 
-## References (if needed)
+## Referencias
 
-- Author, A. (Year). *Title*. Publisher.
-- Website, URL
+[1] David Harris y Sarah Harris. Diseño digital y arquitectura de computadoras. Edición RISC-V. Morgan Kaufmann, 2022. ISBN: 978-0-12-820064-3.
+
+[2] RJ Baker, CMOS, 4ta ed. IEEE Press Editorial Board, 2019.
