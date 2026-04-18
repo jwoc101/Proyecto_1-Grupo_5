@@ -95,7 +95,7 @@ endmodule
 El informe de síntesis para el top_module revela un consumo de 254 células lógicas distribuidas entre diferentes tipos de tablas de búsqueda (LUT). La mayor parte del consumo corresponde a LUT4 con 113 unidades, seguido por MUX2_LUT5 con 60 unidades. El resto de recursos se distribuye entre otros tipos de LUT, incluidos MUX2_LUT6 (30 unidades) y MUX2_LUT7 (15 unidades). Además, el diseño utiliza elementos de interfaz: 12 buffers de entrada (IBUF) para manejar las señales provenientes de los interruptores y botones, y 18 buffers de salida (OBUF) para controlar los LED y displays de 7 segmentos. La conectividad del diseño muestra un total de 227 cables con 292 bits de cables, todos ellos clasificados como públicos.
 
 
-# Simplificacion de Ecuaciones Booleanas - Display de 7 Segmentos
+## Simplificacion de Ecuaciones Booleanas - Display de 7 Segmentos
 
 ## Convencion
 
@@ -211,11 +211,15 @@ seg_a = d2' d0'  +  d3' d1  +  d3 d2' d1'  +  d3' d2 d1' d0  +  d3 d2 d1' d0'  +
 ---
 
 
-## Counterargument & Rebuttal (optional)
+## Problemas encontrados durante el proyecto
 
-**Acknowledge opposing view:** [Some might argue that...]
+Durante el proyecto se presentaron varias dificultades que afectaron el desarrollo de sus distintas etapas. Una de las principales fue la curva de aprendizaje al tener que programar en un lenguaje nuevo, especialmente porque era un HDL y antes solo se había trabajado con lenguajes más enfocados en software. Para poder avanzar, se buscó información en internet, videos, el libro del curso y también se contó con la ayuda del asistente.
 
-**Rebuttal:** [However, this overlooks... because...]
+Otro reto importante fue el uso de la FPGA, ya que no se tenía experiencia previa con este tipo de dispositivos. Esto hizo necesario investigar cómo asignar correctamente los pines y cómo manejar las entradas y salidas del sistema.
+
+En cuanto al código, las partes más complicadas fueron el corrector de errores y el manejo de los displays de siete segmentos. El corrector dio bastantes problemas al inicio porque el análisis no se estaba haciendo bien, entonces cuando se provocaban errores no siempre se corregían y esto generaba fallos en los LEDs. Se probaron varias formas de comparar datos hasta encontrar una que funcionara correctamente.
+
+Por otro lado, los displays de siete segmentos también resultaron difíciles, ya que costó entender cómo enviar las señales correctas para encender los LEDs adecuados en cada uno.
 
 ## Conclusion
 
