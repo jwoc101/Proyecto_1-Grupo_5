@@ -527,18 +527,3 @@ Además, la resistencia del conductor también influye, limitando la corriente e
 En el caso de usar solo un inversor, el circuito no logra oscilar correctamente. Esto sucede porque la entrada y salida están conectadas al mismo nodo, lo que impide cambios adecuados en la señal.
 
 Como resultado, el circuito queda en un estado intermedio (aproximadamente 1V), conocido como estado metaestable, donde no se define claramente un 0 o un 1 lógico. Esto demuestra que se necesita al menos un número impar de inversores mayor a uno para que el oscilador funcione correctamente.
-
-#
-## Conclusion
-
-- Restate thesis (in different words)
-- Summarize main points
-- End with a broader thought, call to action, or closing insight
-
----
-
-## Referencias
-
-[1] David Harris y Sarah Harris. Diseño digital y arquitectura de computadoras. Edición RISC-V. Morgan Kaufmann, 2022. ISBN: 978-0-12-820064-3.
-
-[2] RJ Baker, CMOS, 4ta ed. IEEE Press Editorial Board, 2019.
