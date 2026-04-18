@@ -89,7 +89,8 @@ endmodule
 
 
 
-## Body Paragraph 2 — Second Main Point
+## Consumo de recursos
+![Descripción](imagenes/Consumo.jpeg)
 
 **Topic sentence:** [State second supporting point]
 
