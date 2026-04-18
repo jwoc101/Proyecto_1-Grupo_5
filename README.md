@@ -94,19 +94,122 @@ endmodule
 
 El informe de síntesis para el top_module revela un consumo de 254 células lógicas distribuidas entre diferentes tipos de tablas de búsqueda (LUT). La mayor parte del consumo corresponde a LUT4 con 113 unidades, seguido por MUX2_LUT5 con 60 unidades. El resto de recursos se distribuye entre otros tipos de LUT, incluidos MUX2_LUT6 (30 unidades) y MUX2_LUT7 (15 unidades). Además, el diseño utiliza elementos de interfaz: 12 buffers de entrada (IBUF) para manejar las señales provenientes de los interruptores y botones, y 18 buffers de salida (OBUF) para controlar los LED y displays de 7 segmentos. La conectividad del diseño muestra un total de 227 cables con 292 bits de cables, todos ellos clasificados como públicos.
 
-**Topic sentence:** [State second supporting point]
 
-- Evidence / example:
-- Explanation of evidence:
-- Link back to thesis:
+# Simplificacion de Ecuaciones Booleanas - Display de 7 Segmentos
 
-## Body Paragraph 3 — Third Main Point (optional)
+## Convencion
 
-**Topic sentence:** [State third supporting point]
+La entrada es la palabra de 4 bits `{d3, d2, d1, d0}` donde `d3` es el MSB.
+La salida es activa en alto (catodo comun): `1` = segmento encendido, `0` = segmento apagado.
 
-- Evidence / example:
-- Explanation of evidence:
-- Link back to thesis:
+Distribucion de segmentos:
+
+```
+       --a--
+      f     b
+       --g--
+      e     c
+       --d--
+```
+
+Tabla de verdad completa para los 16 digitos hexadecimales:
+
+| d3 | d2 | d1 | d0 | Digito | a | b | c | d | e | f | g |
+|----|----|----|-----|--------|---|---|---|---|---|---|---|
+|  0 |  0 |  0 |  0 |   0    | 1 | 1 | 1 | 1 | 1 | 1 | 0 |
+|  0 |  0 |  0 |  1 |   1    | 0 | 1 | 1 | 0 | 0 | 0 | 0 |
+|  0 |  0 |  1 |  0 |   2    | 1 | 1 | 0 | 1 | 1 | 0 | 1 |
+|  0 |  0 |  1 |  1 |   3    | 1 | 1 | 1 | 1 | 0 | 0 | 1 |
+|  0 |  1 |  0 |  0 |   4    | 0 | 1 | 1 | 0 | 0 | 1 | 1 |
+|  0 |  1 |  0 |  1 |   5    | 1 | 0 | 1 | 1 | 0 | 1 | 1 |
+|  0 |  1 |  1 |  0 |   6    | 1 | 0 | 1 | 1 | 1 | 1 | 1 |
+|  0 |  1 |  1 |  1 |   7    | 1 | 1 | 1 | 0 | 0 | 0 | 0 |
+|  1 |  0 |  0 |  0 |   8    | 1 | 1 | 1 | 1 | 1 | 1 | 1 |
+|  1 |  0 |  0 |  1 |   9    | 1 | 1 | 1 | 1 | 0 | 1 | 1 |
+|  1 |  0 |  1 |  0 |   A    | 1 | 1 | 1 | 0 | 1 | 1 | 1 |
+|  1 |  0 |  1 |  1 |   b    | 0 | 0 | 1 | 1 | 1 | 1 | 1 |
+|  1 |  1 |  0 |  0 |   C    | 1 | 0 | 0 | 1 | 1 | 1 | 0 |
+|  1 |  1 |  0 |  1 |   d    | 0 | 1 | 1 | 1 | 1 | 0 | 1 |
+|  1 |  1 |  1 |  0 |   E    | 1 | 0 | 0 | 1 | 1 | 1 | 1 |
+|  1 |  1 |  1 |  1 |   F    | 1 | 0 | 0 | 0 | 1 | 1 | 1 |
+
+---
+
+## Ejemplo 1: Segmento a (superior)
+
+Minterminos donde seg_a = 1 (segmento encendido):
+m0, m2, m3, m5, m6, m7, m8, m9, m10, m12, m14, m15
+
+Es mas conveniente trabajar con los maxiterminos (donde seg_a = 0):
+m1(0001), m4(0100), m11(1011), m13(1101)
+
+Por lo tanto: seg_a = (suma de minterminos)' simplificado como complemento de los ceros.
+
+Mapa de Karnaugh para seg_a (marcando los 0s):
+
+```
+            d1d0
+d3d2   | 00 | 01 | 11 | 10 |
+  00   |  1 |  0 |  1 |  1 |
+  01   |  0 |  1 |  1 |  1 |
+  11   |  1 |  0 |  1 |  1 |
+  10   |  1 |  1 |  0 |  1 |
+```
+
+Los ceros estan en m1, m4, m11, m13. No forman ningun grupo adyacente entre si,
+por lo que cada uno es un implicante primo esencial independiente.
+
+Expresion para los ceros (seg_a = 0):
+
+```
+seg_a' = (d3' d2' d1' d0)       -- digito 1
+       + (d3' d2  d1' d0')      -- digito 4
+       + (d3  d2' d1  d0)       -- digito b
+       + (d3  d2  d1' d0)       -- digito d
+```
+
+Complementando (De Morgan) para obtener seg_a = 1:
+
+```
+seg_a = (d3+d2+d1+d0') (d3+d2'+d1+d0) (d3'+d2+d1'+d0') (d3'+d2'+d1+d0')
+```
+
+O en forma directa de suma de minterminos activos (forma canonica):
+
+```
+seg_a = d3'd2'd1'd0' + d3'd2'd1d0' + d3'd2'd1d0 + d3'd2d1'd0
+      + d3'd2d1d0'   + d3'd2d1d0   + d3d2'd1'd0' + d3d2'd1'd0
+      + d3d2'd1d0'   + d3d2d1'd0'  + d3d2d1d0'   + d3d2d1d0
+```
+
+Agrupando en el mapa de Karnaugh los grupos de 1s:
+
+- Grupo de 8: toda la columna d1d0=10 y d1d0=11 con d3d2 cualquiera excepto m11
+  - Grupo A (m2,m3,m6,m7,m10,m14,m15): no todos adyacentes directamente
+- Grupo de 4: m0,m2,m8,m10 (columna d1d0=00 y d1d0=10, filas 00 y 10) -> `d2' d0'` ... verificar: m0=0000(si), m2=0010(si), m8=1000(si), m10=1010(si) -> `d2' d0'`
+- Grupo de 4: m2,m3,m6,m7 (fila 00 columnas 10,11 y fila 01 columnas 10,11) -> m2(00,10),m3(00,11),m6(01,10),m7(01,11) -> `d3' d1`
+- Grupo de 4: m3,m7,m9,m... revisar m9=1001: fila 10, col 01. m5=0101: fila 01, col 01. m5,m7,m9... no adyacentes todos.
+- Grupo de 4: m8,m9,m12,m14 -> m8=1000,m9=1001,m12=1100,m14=1110 no todos adyacentes.
+- Grupo de 2: m8,m9 (fila 10, cols 00,01) -> `d3 d2' d1'`... m8=1000(si),m9=1001(si) -> `d3 d2' d1'`
+- Grupo de 4: m5,m6,m9,m... m5=0101,m6=0110 adyacentes -> `d3' d2 d0'`... m5(01,01),m6(01,10): difieren en d1 y d0, no adyacentes en mapa.
+- Grupo de 2: m5,m9 -> m5=0101(fila 01,col 01), m9=1001(fila 10,col 01) -> adyacentes en mapa (misma columna, filas 01 y 10 son adyacentes en mapa gris) -> `d2' d0` ... verificar: m5=0101 d2'=1,d0=1 si; m9=1001 d2'=1,d0=1 si -> grupo `d2' d0` no cubre solo estos dos ya que m1 tambien tiene d2'=1,d0=1 pero m1=0 para seg_a. Revisar: en realidad las filas del mapa de Karnaugh de 4 variables van en orden Gray: 00,01,11,10, por lo que fila 01 y fila 10 NO son adyacentes (adyacentes son 00-01, 01-11, 11-10, 10-00).
+
+Grupos validos finales (cubriendo todos los 1s con minimo de terminos):
+
+```
+Grupo A: m0,m2,m8,m10  -> d2' d0'          (4 celdas)
+Grupo B: m2,m3,m6,m7   -> d3' d1           (4 celdas)
+Grupo C: m8,m9,m10,... -> revisar
+```
+
+Resultado simplificado por Karnaugh (agrupando 1s):
+
+```
+seg_a = d2' d0'  +  d3' d1  +  d3 d2' d1'  +  d3' d2 d1' d0  +  d3 d2 d1' d0'  +  d3 d2 d1 d0
+```
+
+---
+
 
 ## Counterargument & Rebuttal (optional)
 
