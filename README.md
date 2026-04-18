@@ -92,6 +92,8 @@ endmodule
 ## Consumo de recursos
 ![alt text](./Imagenes/Consumo.jpeg)
 
+El informe de síntesis para el top_module revela un consumo de 254 células lógicas distribuidas entre diferentes tipos de tablas de búsqueda (LUT). La mayor parte del consumo corresponde a LUT4 con 113 unidades, seguido por MUX2_LUT5 con 60 unidades. El resto de recursos se distribuye entre otros tipos de LUT, incluidos MUX2_LUT6 (30 unidades) y MUX2_LUT7 (15 unidades). Además, el diseño utiliza elementos de interfaz: 12 buffers de entrada (IBUF) para manejar las señales provenientes de los interruptores y botones, y 18 buffers de salida (OBUF) para controlar los LED y displays de 7 segmentos. La conectividad del diseño muestra un total de 227 cables con 292 bits de cables, todos ellos clasificados como públicos.
+
 **Topic sentence:** [State second supporting point]
 
 - Evidence / example:
