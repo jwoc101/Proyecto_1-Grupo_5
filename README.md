@@ -1,10 +1,11 @@
 # Diseño Digital Combinacional en Dispositivos Programables
+Gerald Blanco Sáenz 2022058334
+
+Julián Murillo Wo Ching 2024096679
 
 ## Introducción
 
-[Start with a hook — interesting fact, question, or quote]
-[Provide background context on the topic]
-[End with a clear **thesis statement** that outlines your main argument]
+El sistema diseñado utiliza una FPGA (Field-Programmable gate array) y diversos módulos para recibir y corregir un mensaje de 7 bits con Hamming(7,4). A partir de una entrada de 7 bits, 3 de los cuáles indican la paridad del mensaje, y con un error como máximo, se puede deducir exactamente en cual bit de entrada se encuentra el error. El sistema procede a corregirlo y muestra el mensaje de 4 bits en los LEDs ya implementados en la FPGA. Además, cada una de estas configuraciones de 4 bits se le asignó un caractér en hexadecimal respectivo, el cual fue desplegado en un display de 7 segmentos incorporado al circuito receptor. Finalmente, se utilizó un multiplexor de dos entradas de 4 bits, y 4 LEDs adicionales, para representar en binario ya sea la palabra corregida o la posición del error en la entrada.
 
 
 ## Descripción de los Módulos
@@ -70,24 +71,205 @@ endmodule
 ```
 
 #### Entradas
+`in[6:0]`: Palabra recibida del transmisor
+
+`syn[3:0]`: Vector de 3 bits señalando posición de error en binario
 
 #### Salidas
+
+`data[3:0]`: Mensaje de transmisor corregido. No incluye bits de paridad 
+
 #### Comportamiento
-### Módulo de Despliegue de LEDs
+Este módulo utiliza un vector interno que replica la palabra recibida por el transmisor. A este vector se le invierte uno de los bits dependiendo del vector de posición del error. Convenientemente, el valor del síndrome indica donde se encuentra el error de entrada en binario. Se invierte un bit de entrada diferente por cada posible valor del síndrome, salvo que sea un vector nulo, en cuyo caso el vector de entrada permanece intacto. A partir de este vector de 7 bits corregido se extraen los cuatro bits en las posiciones 3, 5, 6, y 7 que corresponden a la palabra transmitida sin los bits de paridad. Estos cuatro bits conforman la salida. 
+
+### Módulo de Despliegue de LEDs: `led_display.sv `
+
+```SystemVerilog
+
+module led_display (
+    input  wire [3:0] data,   // Palabra corregida (d4 d3 d2 d1)
+    output wire [3:0] led    // LEDs de la FPGA (activo en BAJO)
+);
+
+    // Asignación directa: cada bit de data enciende su LED correspondiente
+    assign led = ~data;
+
+endmodule
+
+```
+
 #### Entradas
+
+`data[3:0]`: Palabra corregida sin bits de paridad
+
 #### Salidas
+
+`led[3:0]`: Palabra corregida invertida
+
 #### Comportamiento
-### Módulo para Display de 7 Segmentos
+
+Este módulo simplemente invierte el vector correspondiente a la palabra corregida y lo asigna a un vector de salida. Se hizo de esta manera porque los LEDs incorporados en el FPGA utilizado (Tang Nano 9K) se encienden con un 'cero' lógico. Este módulo se asegura de que los 'unos' en la palabra sean representados por un LED encendido. 
+
+### Módulo para Display de 7 Segmentos: `seg7_display.sv`
+```SystemVerilog
+
+module seg7_display (
+    input  wire [3:0] data,   // Palabra de 4 bits a mostrar (0–15)
+    output reg  [6:0] seg7    // {g, f, e, d, c, b, a} — activo bajo
+);
+
+reg [6:0] seg_int;
+
+    // Tabla de verdad para display ánodo común (0 = segmento encendido)
+    //                      gfedcba
+    always @(*) begin
+        case (data) // 
+            4'h0: seg_int = 7'b1000000; // 0
+            4'h1: seg_int = 7'b1111001; // 1
+            4'h2: seg_int = 7'b0100100; // 2
+            4'h3: seg_int = 7'b0110000; // 3
+            4'h4: seg_int = 7'b0011001; // 4
+            4'h5: seg_int = 7'b0010010; // 5
+            4'h6: seg_int = 7'b0000010; // 6
+            4'h7: seg_int = 7'b1111000; // 7
+            4'h8: seg_int = 7'b0000000; // 8
+            4'h9: seg_int = 7'b0010000; // 9
+            4'hA: seg_int = 7'b0001000; // A
+            4'hB: seg_int = 7'b0000011; // b
+            4'hC: seg_int = 7'b1000110; // C
+            4'hD: seg_int = 7'b0100001; // d
+            4'hE: seg_int = 7'b0000110; // E
+            4'hF: seg_int = 7'b0001110; // F
+            default: seg_int = 7'b1111111; // Apagado
+        endcase
+    end
+
+	//Inversión para implementar con display de cátodo común
+    assign seg7 = ~seg_int;
+
+endmodule
+
+```
+
 #### Entradas
+`data[3:0]`: Palabra de 4 bits que se va a desplegar
+
 #### Salidas
+`seg7[6:0]`: Conjunto de salidas correspondientes a cada segmento del display
+
 #### Comportamiento
+El módulo consiste en una simple tabla de verdad que convierte todos los posibles valores en binario de la palabra corregida en un vector de salida que permita desplegar la representación en hexadecimal de ese valor en el display. Se implementó el código para un display de cátodo común.
+
+
+ La distribución de segmentos en seg7[6:0] es:
+
+        seg7[6] = g (segmento central)
+        seg7[5] = f (segmento superior izquierdo)
+        seg7[4] = e (segmento inferior izquierdo)
+        seg7[3] = d (segmento inferior)
+        seg7[2] = c (segmento inferior derecho)
+        seg7[1] = b (segmento superior derecho)
+        seg7[0] = a (segmento superior)
+
+        --a--
+       f     b
+        --g--
+       e     c
+        --d--
+
+La asignación de la salida ocurre al final del módulo mediante un vector interno. Esta asignación puede ser invertida para implementar el código con un display de ánodo común.
+
 ### Módulo Selector
-#### Entradas
-#### Salidas
-#### Comportamiento
+Este módulo fue no fue implementado con SystemVerilog, sino que fue alambrado directamente al FPGA. Se le asignaron pines de salida en la FPGA a los vectores que corresponden a la palabra de 4 bits corregida y la posición del error en la entrada. Estos conjuntos de 4 y 3 pines fueron conectados como las dos entradas de un multiplexor 74ls157. La salida del multiplexor se conectó a una serie de cuatro LEDs que permitían visualizar cualquiera de las dos entradas. Cúal de las dos entradas del multiplexor se enseñaba en los LEDs se controló con un simple switch en el circuito. 
 
 
 
+## Testbench
+
+### Archivo: `receptor_tp.sv`
+
+```SystemVerilog
+`timescale 1ns/1ps
+
+module receptor_tb;
+
+reg  [6:0] in;
+wire [3:0] led;
+wire [6:0] seg7;
+wire [3:0] palabra;
+wire [2:0] err;
+
+// Instanciar el módulo receptor
+receptor uut (
+    .in(in),
+    .led(led),
+    .seg7(seg7),
+    .palabra(palabra),
+    .err(err)
+);
+
+// Helper task
+task show;
+    begin
+        $display("in=%b | err=%b | palabra=%b | led=%b | seg7=%b",
+                  in, err, palabra, led, seg7);
+    end
+endtask;
+
+integer i;
+
+initial begin
+    $dumpfile("receptor_tb.vcd");
+    $dumpvars(0, receptor_tb);
+
+
+    in = 7'b0000000;
+    #10 show();
+
+
+    for (i = 0; i < 7; i = i + 1) begin
+        in = 7'b0000000 ^ (7'b0000001 << i);
+        #10 show();
+    end
+
+
+    in = 7'b1011010;
+    #10 show();
+
+
+    in = 7'b1111111;
+    #10 show();
+
+
+    in = 7'b1101101;
+    #10 show();
+
+    $finish;
+end
+
+endmodule
+```
+
+### Comportamiento
+Se implementó un simple testbench que, a partir de una entrada de 7 bits, enseña la posición del error, la palabra de 4 bits corregida, el vector invertido para los LEDs de la FPGA, y el vector de salida que irá al display de 7 segmentos. De esta manera, se puede observar que la lógica y las salidas de todos los módulos implementados en System Verilog funcione acorde a lo esperado. 
+
+### Ejemplo de Salida
+
+```
+VCD info: dumpfile receptor_tb.vcd opened for output.
+in=0000000 | err=000 | palabra=0000 | led=1111 | seg7=0111111
+in=0000001 | err=001 | palabra=0000 | led=1111 | seg7=0111111
+in=0000010 | err=010 | palabra=0000 | led=1111 | seg7=0111111
+in=0000100 | err=011 | palabra=0000 | led=1111 | seg7=0111111
+in=0001000 | err=100 | palabra=0000 | led=1111 | seg7=0111111
+in=0010000 | err=101 | palabra=0000 | led=1111 | seg7=0111111
+in=0100000 | err=110 | palabra=0000 | led=1111 | seg7=0111111
+in=1000000 | err=111 | palabra=0000 | led=1111 | seg7=0111111
+in=1011010 | err=100 | palabra=1010 | led=0101 | seg7=1110111
+in=1111111 | err=000 | palabra=1111 | led=0000 | seg7=1110001
+in=1101101 | err=111 | palabra=0101 | led=1010 | seg7=1101101
+../sim/receptor_tb.sv:56: $finish called at 110000 (1ps)
+```
 
 ## Consumo de recursos
 ![alt text](./Imagenes/Consumo.jpeg)
