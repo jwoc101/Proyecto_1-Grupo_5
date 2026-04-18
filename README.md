@@ -7,6 +7,7 @@ Julián Murillo Wo Ching 2024096679
 
 El sistema diseñado utiliza una FPGA (Field-Programmable gate array) y diversos módulos para recibir y corregir un mensaje de 7 bits con Hamming(7,4). A partir de una entrada de 7 bits, 3 de los cuáles indican la paridad del mensaje, y con un error como máximo, se puede deducir exactamente en cual bit de entrada se encuentra el error. El sistema procede a corregirlo y muestra el mensaje de 4 bits en los LEDs ya implementados en la FPGA. Además, cada una de estas configuraciones de 4 bits se le asignó un caractér en hexadecimal respectivo, el cual fue desplegado en un display de 7 segmentos incorporado al circuito receptor. Finalmente, se utilizó un multiplexor de dos entradas de 4 bits, y 4 LEDs adicionales, para representar en binario ya sea la palabra corregida o la posición del error en la entrada.
 
+![alt text](./Imagenes/Diagrama.png)
 
 ## Descripción de los Módulos
 
@@ -397,7 +398,7 @@ seg_a = d2' d0'  +  d3' d1  +  d3 d2' d1'  +  d3' d2 d1' d0  +  d3 d2 d1' d0'  +
 
 Durante el proyecto se presentaron varias dificultades que afectaron el desarrollo de sus distintas etapas. Una de las principales fue la curva de aprendizaje al tener que programar en un lenguaje nuevo, especialmente porque era un HDL y antes solo se había trabajado con lenguajes más enfocados en software. Para poder avanzar, se buscó información en internet, videos, el libro del curso y también se contó con la ayuda del asistente.
 
-Otro reto importante fue el uso de la FPGA, ya que no se tenía experiencia previa con este tipo de dispositivos. Esto hizo necesario investigar cómo asignar correctamente los pines y cómo manejar las entradas y salidas del sistema.
+Otro reto importante fue el uso de la FPGA, ya que no se tenía experiencia previa con este tipo de dispositivos. Esto hizo necesario investigar cómo asignar correctamente los pines y cómo manejar las entradas y salidas del sistema. Además, se tuvo que investigar cómo deshabilitar drivers de USB de las computadoras para poder programar exitosamente la FPGA.
 
 En cuanto al código, las partes más complicadas fueron el corrector de errores y el manejo de los displays de siete segmentos. El corrector dio bastantes problemas al inicio porque el análisis no se estaba haciendo bien, entonces cuando se provocaban errores no siempre se corregían y esto generaba fallos en los LEDs. Se probaron varias formas de comparar datos hasta encontrar una que funcionara correctamente.
 
